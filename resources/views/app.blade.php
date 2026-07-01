@@ -20,6 +20,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Vite Styles/Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -35,62 +38,30 @@
 
 <body class="bg-slate-50 text-slate-700 antialiased min-h-screen flex flex-col">
     
-    {{-- Notification Toast --}}
-    @if(session('success') || session('error') || $errors->any())
-    <div id="notification-toast" class="fixed top-24 right-6 z-50 max-w-md w-full bg-white rounded-xl shadow-2xl border-l-4 transform transition-all duration-500 translate-x-full opacity-0 {{ session('success') ? 'border-emerald-500' : 'border-red-500' }}">
-        <div class="p-4 flex items-start gap-3">
-            <div class="flex-shrink-0 mt-0.5">
-                @if(session('success'))
-                    <i class="fas fa-check-circle text-emerald-500 text-xl"></i>
-                @else
-                    <i class="fas fa-exclamation-circle text-red-500 text-xl"></i>
-                @endif
-            </div>
-            
-            <div class="flex-grow">
-                <h5 class="font-bold text-slate-800 text-sm">
-                    {{ session('success') ? 'Berhasil!' : 'Oops, Terjadi Kesalahan!' }}
-                </h5>
-                <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-                    @if(session('success'))
-                        {{ session('success') }}
-                    @elseif(session('error'))
-                        {{ session('error') }}
-                    @elseif($errors->any())
-                        {{ $errors->first() }}
-                    @endif
-                </p>
-            </div>
-            
-            <button onclick="dismissNotification()" class="text-slate-400 hover:text-slate-600 transition-colors p-1">
-                <i class="fas fa-times text-sm"></i>
-            </button>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toast = document.getElementById('notification-toast');
-            
-            setTimeout(() => {
-                toast.classList.remove('translate-x-full', 'opacity-0');
-                toast.classList.add('translate-x-0', 'opacity-100');
-            }, 150);
-            setTimeout(() => {
-                dismissNotification();
-            }, 4000);
+    {{-- Notification Toast Menggunakan SweetAlert2 --}}
+@if(session('success') || session('error') || $errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
         });
 
-        function dismissNotification() {
-            const toast = document.getElementById('notification-toast');
-            if (toast) {
-                toast.classList.remove('translate-x-0', 'opacity-100');
-                toast.classList.add('translate-x-full', 'opacity-0');
-                setTimeout(() => { toast.remove(); }, 500);
-            }
-        }
-    </script>
-    @endif
+        Toast.fire({
+            icon: "{{ session('success') ? 'success' : 'error' }}",
+            title: "{{ session('success') ? 'Berhasil!' : 'Oops, Terjadi Kesalahan!' }}",
+            text: "{{ session('success') ? session('success') : (session('error') ? session('error') : $errors->first()) }}"
+        });
+    });
+</script>
+@endif
 
     {{-- Top Bar --}}
     <div class="w-full bg-white border-b border-slate-100 py-2 hidden lg:block">
@@ -147,7 +118,6 @@
                     <a href="{{ route('home') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('home') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Home</a>
                     <a href="{{ route('about') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('about') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">About</a>
                     <a href="{{ route('service') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('service') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Service</a>
-                    <a href="{{ route('price') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('price') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Pricing</a>
                     <a href="{{ route('contact') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('contact') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Contact</a>
                     
                     <!-- MENU ADMIN JIKA LOGIN (DESKTOP) -->
@@ -183,7 +153,6 @@
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('home') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Home</a>
                 <a href="{{ route('about') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('about') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">About</a>
                 <a href="{{ route('service') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('service') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Service</a>
-                <a href="{{ route('price') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('price') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Pricing</a>
                 <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('contact') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Contact</a>
                 
                 <!-- MENU ADMIN JIKA LOGIN (MOBILE) -->
@@ -255,11 +224,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('price') }}" class="hover:text-primary transition-colors flex items-center">
-                                <i class="fa fa-angle-right mr-2 text-primary"></i>Pricing Plan
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ route('contact') }}" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Contact Us
                             </a>
@@ -284,11 +248,6 @@
                         <li>
                             <a href="{{ route('service') }}" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Our Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('price') }}" class="hover:text-primary transition-colors flex items-center">
-                                <i class="fa fa-angle-right mr-2 text-primary"></i>Pricing Plan
                             </a>
                         </li>
                         <li>
@@ -343,24 +302,6 @@
         </div>
     </footer>
     <!-- Footer End -->
-
-
-    {{-- Floating Buttons --}}
-    @auth
-        <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-            <a href="{{ url()->current() }}" 
-                class="w-14 h-14 bg-white text-slate-500 border border-slate-200 rounded-full flex items-center justify-center shadow-lg hover:bg-red-50 hover:text-danger hover:border-danger hover:scale-110 active:scale-95 transition-all duration-300" 
-                title="Batal & Refresh">
-                <i class="fas fa-times text-xl"></i>
-            </a>
-
-            <button type="submit" form="content-edit-form"
-                    class="w-14 h-14 bg-primary text-secondary rounded-full flex items-center justify-center shadow-lg shadow-primary/30 hover:bg-white hover:text-primary hover:scale-110 active:scale-95 transition-all duration-300" 
-                    title="Simpan Perubahan">
-                <i class="fas fa-save text-xl"></i>
-            </button>
-        </div>
-    @endauth
 
     <!-- Mobile Navigation Menu Script and Back to Top Script -->
     <script>

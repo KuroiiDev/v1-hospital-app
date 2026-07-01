@@ -7,13 +7,12 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
+use Database\Seeders\HomeSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         User::updateOrCreate(
@@ -24,5 +23,9 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
+
+        $this->call([
+            HomeSeeder::class,
+        ]);
     }
 }

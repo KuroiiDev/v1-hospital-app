@@ -38,6 +38,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect(route('login'))->with('success', 'Anda berhasil logout.');
+        return redirect(route('home'))->with('success', 'Anda berhasil logout. Mode edit telah dinonaktifkan.');
     }
 }

@@ -1,9 +1,15 @@
 @extends('app')
 
 @section('content')
-    <!-- Hero Start -->
+
+@auth
+    <form action="{{ route('home.update') }}" method="POST" id="content-edit-form" class="m-0 p-0">
+        @csrf
+        @method('PUT')
+        <div id="deleted-cards-container"></div>
+@endauth
+
     <div class="relative bg-secondary overflow-hidden py-24 md:py-32 lg:py-48 flex items-center min-h-[600px] lg:min-h-[750px]">
-        <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
             <img class="w-full h-full object-cover opacity-35" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80" alt="Hospital lobby background">
             <div class="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-transparent"></div>
@@ -11,620 +17,530 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-2xl lg:max-w-3xl">
-                <h5 class="text-primary text-base md:text-lg font-bold uppercase tracking-widest border-b-4 border-primary pb-2 inline-block mb-6">Welcome To PresiMedic</h5>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8">
-                    Best Healthcare Solution In Your City
-                </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-xl">
-                    We offer comprehensive outpatient services, advanced diagnostic tools, and state-of-the-art emergency rooms to keep you and your family healthy.
-                </p>
+                @auth
+                    <input type="text" 
+                        name="texts[hero_badge]" 
+                        value="{{ $texts['hero_badge'] }}" 
+                        class="bg-transparent text-primary text-base md:text-lg font-bold uppercase tracking-widest border-b-4 border-dashed border-primary/60 pb-2 inline-block mb-6 focus:border-primary focus:ring-0 p-0 max-w-full"
+                        style="width: {{ strlen($texts['hero_badge'] ?? '') * 0.65 }}rem;">
+                @else
+                    <h5 class="text-primary text-base md:text-lg font-bold uppercase tracking-widest border-b-4 border-primary pb-2 inline-block mb-6">
+                        {{ $texts['hero_badge'] }}
+                    </h5>
+                @endauth
+                
+                @auth
+                    <input type="text" 
+                        name="texts[hero_title]" 
+                        value="{{ $texts['hero_title'] }}" 
+                        class="bg-transparent text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-8 border-b-4 border-dashed border-white/20 focus:border-primary focus:ring-0 p-0 w-full">
+                @else
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8">
+                        {{ $texts['hero_title'] }}
+                    </h1>
+                @endauth
+
+                @auth
+                    <textarea name="texts[hero_desc]" 
+                        rows="3"
+                        class="w-full bg-transparent text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-xl border-2 border-dashed border-white/20 focus:border-primary focus:ring-0 p-0 resize-none">{{ $texts['hero_desc'] }}</textarea>
+                @else
+                    <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-xl">
+                        {{ $texts['hero_desc'] }}
+                    </p>
+                @endauth
+                
                 <div class="flex flex-wrap gap-4">
-                    <a href="{{ route('service') }}" class="px-8 py-4 bg-white hover:bg-slate-100 text-secondary font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center min-w-[170px]">
-                        Our Services
-                    </a>
-                    <a href="#appointment-section" class="px-8 py-4 border-2 border-white hover:bg-white hover:text-secondary text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center min-w-[170px]">
-                        Appointment
-                    </a>
+                    @auth
+                        <input type="text" 
+                            name="texts[hero_btn_1_text]" 
+                            value="{{ $texts['hero_btn_1_text'] }}" 
+                            class="px-8 py-4 bg-white hover:bg-slate-100 text-secondary font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center min-w-[170px] border-2 border-dashed border-primary/40 focus:border-primary focus:ring-0 p-0">
+                        <input type="text" 
+                            name="texts[hero_btn_2_text]" 
+                            value="{{ $texts['hero_btn_2_text'] }}" 
+                            class="px-8 py-4 border-2 border-white hover:bg-white hover:text-secondary text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center min-w-[170px] border-2 border-dashed border-white/40 focus:border-primary focus:ring-0 p-0">
+                    @else
+                        <a href="#" class="px-8 py-4 bg-white hover:bg-slate-100 text-secondary font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center min-w-[170px]">
+                            {{ $texts['hero_btn_1_text'] }}
+                        </a>
+                        <a href="#" class="px-8 py-4 border-2 border-white hover:bg-white hover:text-secondary text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center min-w-[170px]">
+                            {{ $texts['hero_btn_2_text'] }}
+                        </a>
+                    @endauth
                 </div>
             </div>
         </div>
     </div>
-    <!-- Hero End -->
 
-
-    <!-- About Start -->
     <section class="py-20 lg:py-28 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                <!-- Image side -->
                 <div class="lg:col-span-5 h-[400px] sm:h-[500px] lg:h-[600px] relative">
                     <img class="w-full h-full object-cover rounded-2xl shadow-xl" src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80" alt="About PresiMedic doctors">
                     <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full -z-10"></div>
                 </div>
 
-                <!-- Text side -->
                 <div class="lg:col-span-7">
                     <div class="mb-8">
-                        <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">About Us</h5>
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight">Best Medical Care For Yourself and Your Family</h2>
+                        @auth
+                            <input type="text" 
+                                name="texts[about_badge]" 
+                                value="{{ $texts['about_badge'] }}" 
+                                class="bg-transparent text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-dashed border-primary/60 pb-1 inline-block mb-3 focus:border-primary focus:ring-0 p-0 max-w-full"
+                                style="width: {{ strlen($texts['about_badge'] ?? '') * 0.65 }}rem;">
+                        @else
+                            <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">
+                                {{ $texts['about_badge'] }}
+                            </h5>
+                        @endauth
+
+                        @auth
+                            <input type="text" 
+                                name="texts[about_title]" 
+                                value="{{ $texts['about_title'] }}" 
+                                class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 w-full">
+                        @else
+                            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight">
+                                {{ $texts['about_title'] }}
+                            </h2>
+                        @endauth
                     </div>
-                    <p class="text-slate-500 text-lg leading-relaxed mb-10">
-                        Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                        <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6">
-                            <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                                <i class="fa fa-user-md text-2xl text-primary"></i>
-                            </div>
-                            <h3 class="font-bold text-secondary text-sm sm:text-base leading-tight">Qualified<span class="block text-primary text-xs font-normal mt-1">Doctors</span></h3>
-                        </div>
-                        
-                        <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6">
-                            <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                                <i class="fa fa-procedures text-2xl text-primary"></i>
-                            </div>
-                            <h3 class="font-bold text-secondary text-sm sm:text-base leading-tight">Emergency<span class="block text-primary text-xs font-normal mt-1">Services</span></h3>
-                        </div>
-                        
-                        <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6">
-                            <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                                <i class="fa fa-microscope text-2xl text-primary"></i>
-                            </div>
-                            <h3 class="font-bold text-secondary text-sm sm:text-base leading-tight">Accurate<span class="block text-primary text-xs font-normal mt-1">Testing</span></h3>
-                        </div>
-                        
-                        <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6">
-                            <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                                <i class="fa fa-ambulance text-2xl text-primary"></i>
-                            </div>
-                            <h3 class="font-bold text-secondary text-sm sm:text-base leading-tight">Free<span class="block text-primary text-xs font-normal mt-1">Ambulance</span></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About End -->
 
-
-    <!-- Services Start -->
-    <section class="py-20 lg:py-28 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-xl mx-auto mb-16">
-                <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">Services</h5>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">Excellent Medical Services</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service item 1 -->
-                <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa fa-user-md text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-secondary group-hover:text-white mb-4 transition-colors">Emergency Care</h3>
-                    <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
-                        Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.
-                    </p>
-                    <a href="{{ route('service') }}" class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary group-hover:text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1" aria-label="Emergency Care Service">
-                        <i class="bi bi-arrow-right text-lg"></i>
-                    </a>
-                </div>
-
-                <!-- Service item 2 -->
-                <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa fa-procedures text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-secondary group-hover:text-white mb-4 transition-colors">Operation & Surgery</h3>
-                    <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
-                        Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.
-                    </p>
-                    <a href="{{ route('service') }}" class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary group-hover:text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1" aria-label="Operation & Surgery Service">
-                        <i class="bi bi-arrow-right text-lg"></i>
-                    </a>
-                </div>
-
-                <!-- Service item 3 -->
-                <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa fa-stethoscope text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-secondary group-hover:text-white mb-4 transition-colors">Outdoor Checkup</h3>
-                    <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
-                        Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.
-                    </p>
-                    <a href="{{ route('service') }}" class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary group-hover:text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1" aria-label="Outdoor Checkup Service">
-                        <i class="bi bi-arrow-right text-lg"></i>
-                    </a>
-                </div>
-
-                <!-- Service item 4 -->
-                <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa fa-ambulance text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-secondary group-hover:text-white mb-4 transition-colors">Ambulance Service</h3>
-                    <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
-                        Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.
-                    </p>
-                    <a href="{{ route('service') }}" class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary group-hover:text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1" aria-label="Ambulance Service">
-                        <i class="bi bi-arrow-right text-lg"></i>
-                    </a>
-                </div>
-
-                <!-- Service item 5 -->
-                <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa fa-pills text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-secondary group-hover:text-white mb-4 transition-colors">Medicine & Pharmacy</h3>
-                    <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
-                        Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.
-                    </p>
-                    <a href="{{ route('service') }}" class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary group-hover:text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1" aria-label="Medicine & Pharmacy Service">
-                        <i class="bi bi-arrow-right text-lg"></i>
-                    </a>
-                </div>
-
-                <!-- Service item 6 -->
-                <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa fa-microscope text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-secondary group-hover:text-white mb-4 transition-colors">Blood Testing</h3>
-                    <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
-                        Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.
-                    </p>
-                    <a href="{{ route('service') }}" class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary group-hover:text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1" aria-label="Blood Testing Service">
-                        <i class="bi bi-arrow-right text-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Services End -->
-
-
-    <!-- Appointment Start -->
-    <section id="appointment-section" class="py-20 bg-primary/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-primary rounded-3xl overflow-hidden shadow-xl">
-                <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <!-- Text Section -->
-                    <div class="p-12 lg:p-16 flex flex-col justify-center text-white">
-                        <div class="mb-6">
-                            <h5 class="text-secondary text-sm font-bold uppercase tracking-widest border-b-4 border-secondary pb-1 inline-block mb-3">Appointment</h5>
-                            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">Make An Appointment For Your Family</h2>
-                        </div>
-                        <p class="text-white/80 leading-relaxed mb-8">
-                            Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et.
+                    @auth
+                        <textarea name="texts[about_desc]" 
+                            rows="4"
+                            class="w-full bg-transparent text-slate-500 text-lg leading-relaxed mb-10 border-2 border-dashed border-slate-200 focus:border-primary focus:ring-0 p-0 resize-none">{{ $texts['about_desc'] }}</textarea>
+                    @else
+                        <p class="text-slate-500 text-lg leading-relaxed mb-10">
+                            {{ $texts['about_desc'] }}
                         </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a class="px-8 py-3 bg-secondary hover:bg-secondary-hover text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg" href="#!">Find Doctor</a>
-                            <a class="px-8 py-3 border border-white hover:bg-white hover:text-secondary text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg" href="#!">Read More</a>
-                        </div>
-                    </div>
-                    <!-- Form Section -->
-                    <div class="p-8 sm:p-12 lg:p-16 bg-white flex flex-col justify-center">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-secondary text-center mb-8">Book An Appointment</h3>
-                        <form action="#" class="space-y-6">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="dept" class="sr-only">Choose Department</label>
-                                    <select id="dept" class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-slate-700 text-sm">
-                                        <option selected>Choose Department</option>
-                                        <option value="1">Department 1</option>
-                                        <option value="2">Department 2</option>
-                                        <option value="3">Department 3</option>
-                                    </select>
+                    @endauth
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6" id="about-cards-container">
+                        @foreach($aboutCards as $card)
+                            <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6 relative group card-item" data-id="{{ $card->id }}">
+                                @auth
+                                    <button type="button" onclick="removeCard(this, '{{ $card->id }}')" class="absolute top-2 right-2 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus Card">
+                                        <i class="fas fa-trash-alt text-xs"></i>
+                                    </button>
+                                @endauth
+                                <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
+                                    @auth
+                                        <input type="text" name="cards[{{ $card->id }}][icon]" value="{{ $card->icon }}" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b border-dashed border-primary/40 w-full" placeholder="Icon Class">
+                                    @else
+                                        <i class="{{ $card->icon }} text-2xl text-primary"></i>
+                                    @endauth
                                 </div>
-                                <div>
-                                    <label for="doctor" class="sr-only">Select Doctor</label>
-                                    <select id="doctor" class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-slate-700 text-sm">
-                                        <option selected>Select Doctor</option>
-                                        <option value="1">Doctor 1</option>
-                                        <option value="2">Doctor 2</option>
-                                        <option value="3">Doctor 3</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="name" class="sr-only">Your Name</label>
-                                    <input type="text" id="name" placeholder="Your Name" class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-slate-700 text-sm">
-                                </div>
-                                <div>
-                                    <label for="email" class="sr-only">Your Email</label>
-                                    <input type="email" id="email" placeholder="Your Email" class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-slate-700 text-sm">
-                                </div>
-                                <div>
-                                    <label for="date-input" class="sr-only">Date</label>
-                                    <input type="date" id="date-input" class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-slate-700 text-sm">
-                                </div>
-                                <div>
-                                    <label for="time-input" class="sr-only">Time</label>
-                                    <input type="time" id="time-input" class="w-full bg-slate-50 border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-slate-700 text-sm">
-                                </div>
+                                @auth
+                                    <input type="text" name="cards[{{ $card->id }}][title]" value="{{ $card->title }}" class="bg-transparent font-bold text-secondary text-sm sm:text-base text-center focus:ring-0 p-0 border-b border-dashed border-primary/20 w-full" placeholder="Judul Card">
+                                    <input type="hidden" name="cards[{{ $card->id }}][section]" value="about">
+                                @else
+                                    <h3 class="font-bold text-secondary text-sm sm:text-base leading-tight">
+                                        {{ explode(' ', $card->title)[0] ?? '' }}<span class="block text-primary text-xs font-normal mt-1">{{ substr(strstr($card->title ?? '', ' '), 1) }}</span>
+                                    </h3>
+                                @endauth
                             </div>
-                            <div>
-                                <button type="submit" class="w-full py-4 bg-primary hover:bg-primary-hover text-secondary font-bold rounded-lg shadow-lg hover:shadow-xl transition-all uppercase text-sm">
-                                    Make An Appointment
-                                </button>
-                            </div>
-                        </form>
+                        @endforeach
+
+                        @auth
+                            <button type="button" onclick="addAboutCard()" class="bg-slate-50 hover:bg-slate-100 border-2 border-dashed border-slate-300 transition-all duration-300 flex flex-col items-center justify-center rounded-2xl p-6 min-h-[140px]" id="btn-add-about">
+                                <i class="fa fa-plus text-xl text-slate-400 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">Tambah Card</span>
+                            </button>
+                        @endauth
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Appointment End -->
 
-
-    <!-- Pricing Plan Start -->
-    <section class="py-20 lg:py-28 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-xl mx-auto mb-16">
-                <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">Medical Packages</h5>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">Awesome Medical Programs</h2>
-            </div>
-
-            <!-- Pricing Grid (Migrated from Slider to responsive 4-column Grid) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Package 1 -->
-                <div class="bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-xl transition-all duration-300 rounded-3xl overflow-hidden flex flex-col justify-between">
-                    <div class="relative h-48 overflow-hidden group">
-                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=600&q=80" alt="Pregnancy Care">
-                        <div class="absolute inset-0 bg-secondary/80 flex flex-col items-center justify-center p-4">
-                            <h3 class="text-white text-xl font-bold mb-2">Pregnancy Care</h3>
-                            <div class="text-white flex items-baseline">
-                                <span class="text-lg font-semibold mr-1">$</span>
-                                <span class="text-4xl font-extrabold">49</span>
-                                <span class="text-sm font-normal text-slate-300 ml-1">/ Year</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-8 text-center flex-grow flex flex-col justify-between">
-                        <ul class="space-y-4 text-sm text-slate-500 mb-8">
-                            <li class="border-b border-slate-200/50 pb-2">Emergency Medical Treatment</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highly Experienced Doctors</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highest Success Rate</li>
-                            <li class="pb-2">Telephone Service</li>
-                        </ul>
-                        <a href="#!" class="inline-block py-3 px-8 bg-primary hover:bg-primary-hover text-secondary font-bold rounded-full transition-all shadow-md">Apply Now</a>
-                    </div>
-                </div>
-
-                <!-- Package 2 -->
-                <div class="bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-xl transition-all duration-300 rounded-3xl overflow-hidden flex flex-col justify-between">
-                    <div class="relative h-48 overflow-hidden group">
-                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80" alt="Health Checkup">
-                        <div class="absolute inset-0 bg-secondary/80 flex flex-col items-center justify-center p-4">
-                            <h3 class="text-white text-xl font-bold mb-2">Health Checkup</h3>
-                            <div class="text-white flex items-baseline">
-                                <span class="text-lg font-semibold mr-1">$</span>
-                                <span class="text-4xl font-extrabold">99</span>
-                                <span class="text-sm font-normal text-slate-300 ml-1">/ Year</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-8 text-center flex-grow flex flex-col justify-between">
-                        <ul class="space-y-4 text-sm text-slate-500 mb-8">
-                            <li class="border-b border-slate-200/50 pb-2">Emergency Medical Treatment</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highly Experienced Doctors</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highest Success Rate</li>
-                            <li class="pb-2">Telephone Service</li>
-                        </ul>
-                        <a href="#!" class="inline-block py-3 px-8 bg-primary hover:bg-primary-hover text-secondary font-bold rounded-full transition-all shadow-md">Apply Now</a>
-                    </div>
-                </div>
-
-                <!-- Package 3 -->
-                <div class="bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-xl transition-all duration-300 rounded-3xl overflow-hidden flex flex-col justify-between">
-                    <div class="relative h-48 overflow-hidden group">
-                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&q=80" alt="Dental Care">
-                        <div class="absolute inset-0 bg-secondary/80 flex flex-col items-center justify-center p-4">
-                            <h3 class="text-white text-xl font-bold mb-2">Dental Care</h3>
-                            <div class="text-white flex items-baseline">
-                                <span class="text-lg font-semibold mr-1">$</span>
-                                <span class="text-4xl font-extrabold">149</span>
-                                <span class="text-sm font-normal text-slate-300 ml-1">/ Year</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-8 text-center flex-grow flex flex-col justify-between">
-                        <ul class="space-y-4 text-sm text-slate-500 mb-8">
-                            <li class="border-b border-slate-200/50 pb-2">Emergency Medical Treatment</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highly Experienced Doctors</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highest Success Rate</li>
-                            <li class="pb-2">Telephone Service</li>
-                        </ul>
-                        <a href="#!" class="inline-block py-3 px-8 bg-primary hover:bg-primary-hover text-secondary font-bold rounded-full transition-all shadow-md">Apply Now</a>
-                    </div>
-                </div>
-
-                <!-- Package 4 -->
-                <div class="bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-xl transition-all duration-300 rounded-3xl overflow-hidden flex flex-col justify-between">
-                    <div class="relative h-48 overflow-hidden group">
-                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=600&q=80" alt="Operation & Surgery">
-                        <div class="absolute inset-0 bg-secondary/80 flex flex-col items-center justify-center p-4">
-                            <h3 class="text-white text-xl font-bold mb-2">Operation & Surgery</h3>
-                            <div class="text-white flex items-baseline">
-                                <span class="text-lg font-semibold mr-1">$</span>
-                                <span class="text-4xl font-extrabold">199</span>
-                                <span class="text-sm font-normal text-slate-300 ml-1">/ Year</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-8 text-center flex-grow flex flex-col justify-between">
-                        <ul class="space-y-4 text-sm text-slate-500 mb-8">
-                            <li class="border-b border-slate-200/50 pb-2">Emergency Medical Treatment</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highly Experienced Doctors</li>
-                            <li class="border-b border-slate-200/50 pb-2">Highest Success Rate</li>
-                            <li class="pb-2">Telephone Service</li>
-                        </ul>
-                        <a href="#!" class="inline-block py-3 px-8 bg-primary hover:bg-primary-hover text-secondary font-bold rounded-full transition-all shadow-md">Apply Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Pricing Plan End -->
-
-
-    <!-- Team Start -->
     <section class="py-20 lg:py-28 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-xl mx-auto mb-16">
-                <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">Our Doctors</h5>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">Qualified Healthcare Professionals</h2>
-            </div>
+                @auth
+                    <input type="text" 
+                        name="texts[services_badge]" 
+                        value="{{ $texts['services_badge'] }}" 
+                        class="bg-transparent text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-dashed border-primary/60 pb-1 inline-block mb-3 focus:border-primary focus:ring-0 p-0 max-w-full text-center"
+                        style="width: {{ strlen($texts['services_badge'] ?? '') * 0.65 }}rem;">
+                @else
+                    <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">
+                        {{ $texts['services_badge'] }}
+                    </h5>
+                @endauth
 
-            <!-- Team Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Doctor Card 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64">
-                    <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden">
-                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Doctor Name">
-                    </div>
-                    <div class="w-full sm:w-3/5 p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-secondary mb-1">Dr. John Doe</h3>
-                            <h6 class="text-primary text-xs font-semibold uppercase tracking-wider italic mb-4">Cardiology Specialist</h6>
-                            <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor.</p>
-                        </div>
-                        <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Doctor Card 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64">
-                    <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden">
-                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" alt="Doctor Name">
-                    </div>
-                    <div class="w-full sm:w-3/5 p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-secondary mb-1">Dr. Alex Smith</h3>
-                            <h6 class="text-primary text-xs font-semibold uppercase tracking-wider italic mb-4">Cardiology Specialist</h6>
-                            <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor.</p>
-                        </div>
-                        <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Doctor Card 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64">
-                    <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden">
-                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" alt="Doctor Name">
-                    </div>
-                    <div class="w-full sm:w-3/5 p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-secondary mb-1">Dr. Sarah Jenkins</h3>
-                            <h6 class="text-primary text-xs font-semibold uppercase tracking-wider italic mb-4">Cardiology Specialist</h6>
-                            <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor.</p>
-                        </div>
-                        <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="Twitter"><i class="fab fa-twitter text-sm"></i></a>
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f text-sm"></i></a>
-                            <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-sm"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Team End -->
-
-
-    <!-- Search Start -->
-    <section class="bg-secondary py-16 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-15">
-            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80" alt="Hospital search background">
-        </div>
-        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-10 max-w-xl mx-auto">
-                <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">Find A Doctor</h5>
-                <h2 class="text-3xl sm:text-4xl font-bold leading-tight">Find Healthcare Professionals</h2>
-                <p class="text-slate-400 mt-4 text-sm leading-relaxed">Duo ipsum erat stet dolor sea ut nonumy tempor. Tempor duo lorem eos sit sed ipsum takimata ipsum sit est.</p>
+                @auth
+                    <input type="text" 
+                        name="texts[services_title]" 
+                        value="{{ $texts['services_title'] }}" 
+                        class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
+                @else
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">
+                        {{ $texts['services_title'] }}
+                    </h2>
+                @endauth
             </div>
             
-            <form action="#" class="max-w-2xl mx-auto bg-white/10 backdrop-blur-md p-3 rounded-2xl shadow-xl flex flex-col md:flex-row gap-3">
-                <div class="w-full md:w-1/3">
-                    <label for="search-dept" class="sr-only">Department</label>
-                    <select id="search-dept" class="w-full bg-slate-900/40 text-white border-0 border-b border-white/20 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-sm placeholder-slate-400">
-                        <option selected>Department</option>
-                        <option value="1">Department 1</option>
-                        <option value="2">Department 2</option>
-                        <option value="3">Department 3</option>
-                    </select>
-                </div>
-                <div class="w-full md:w-1/2">
-                    <label for="keyword" class="sr-only">Keyword</label>
-                    <input type="text" id="keyword" placeholder="Keyword" class="w-full bg-slate-900/40 text-white border-0 border-b border-white/20 focus:border-primary focus:ring-0 px-4 py-3 rounded-lg text-sm placeholder-slate-400">
-                </div>
-                <div class="w-full md:w-1/6">
-                    <button type="submit" class="w-full py-3 bg-primary hover:bg-primary-hover text-secondary font-bold rounded-lg transition-colors text-sm uppercase">Search</button>
-                </div>
-            </form>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="service-cards-container">
+                @foreach($serviceCards as $card)
+                    <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center relative card-item" data-id="{{ $card->id }}">
+                        @auth
+                            <button type="button" onclick="removeCard(this, '{{ $card->id }}')" class="absolute top-4 right-4 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-7 h-7 rounded-full flex items-center justify-center shadow z-10" title="Hapus Card">
+                                <i class="fas fa-trash-alt text-xs"></i>
+                            </button>
+                        @endauth
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6 group-hover:scale-110 transition-transform">
+                            @auth
+                                <input type="text" name="cards[{{ $card->id }}][icon]" value="{{ $card->icon }}" class="bg-transparent text-white text-center text-xs focus:ring-0 p-0 border-b border-dashed border-white/40 w-full" placeholder="Icon Class">
+                            @else
+                                <i class="{{ $card->icon }} text-2xl"></i>
+                            @endauth
+                        </div>
+                        @auth
+                            <input type="text" name="cards[{{ $card->id }}][title]" value="{{ $card->title }}" class="bg-transparent text-xl font-bold text-secondary group-hover:text-white mb-4 text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Judul Layanan">
+                            <textarea name="cards[{{ $card->id }}][text]" rows="3" class="w-full bg-transparent text-slate-500 group-hover:text-slate-400 mb-6 text-sm text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none" placeholder="Deskripsi Singkat">{{ $card->text }}</textarea>
+                            <input type="hidden" name="cards[{{ $card->id }}][section]" value="service">
+                        @else
+                            <h3 class="text-xl font-bold text-secondary group-hover:text-white mb-4 transition-colors">{{ $card->title }}</h3>
+                            <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
+                                {{ $card->text }}
+                            </p>
+                        @endauth
+                        <a href="{{ route('service') }}" class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1">
+                            <i class="bi bi-arrow-right text-lg"></i>
+                        </a>
+                    </div>
+                @endforeach
+
+                @auth
+                    <button type="button" onclick="addServiceCard()" class="group bg-transparent hover:bg-white border-2 border-dashed border-slate-300 hover:border-primary rounded-2xl p-8 min-h-[320px] transition-all duration-300 flex flex-col items-center justify-center text-center w-full" id="btn-add-service">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-slate-100 group-hover:bg-primary/10 text-slate-400 group-hover:text-primary rounded-2xl mb-6 transition-all">
+                            <i class="fa fa-plus text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-400 group-hover:text-primary mb-2">Tambah Layanan</h3>
+                        <p class="text-slate-400 text-sm max-w-[200px]">Klik di sini untuk menambahkan kartu layanan medis baru</p>
+                    </button>
+                @endauth
+            </div>
         </div>
     </section>
-    <!-- Search End -->
 
+    <section class="py-20 lg:py-28 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                @auth
+                    <input type="text" 
+                        name="texts[doctors_badge]" 
+                        value="{{ $texts['doctors_badge'] }}" 
+                        class="bg-transparent text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-dashed border-primary/60 pb-1 inline-block mb-3 focus:border-primary focus:ring-0 p-0 max-w-full text-center"
+                        style="width: {{ strlen($texts['doctors_badge'] ?? '') * 0.65 }}rem;">
+                @else
+                    <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">
+                        {{ $texts['doctors_badge'] }}
+                    </h5>
+                @endauth
 
-    <!-- Testimonial Start -->
+                @auth
+                    <input type="text" 
+                        name="texts[doctors_title]" 
+                        value="{{ $texts['doctors_title'] }}" 
+                        class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
+                @else
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">
+                        {{ $texts['doctors_title'] }}
+                    </h2>
+                @endauth
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="doctors-container">
+                @foreach($doctors as $doctor)
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64 relative group card-item" data-id="{{ $doctor->id }}">
+                        @auth
+                            <button type="button" onclick="removeDoctorCard(this, '{{ $doctor->id }}')" class="absolute top-2 right-2 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Dokter">
+                                <i class="fas fa-trash-alt text-xs"></i>
+                            </button>
+                        @endauth
+                        <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden relative">
+                            <img class="w-full h-full object-cover" src="{{ $doctor->image }}" alt="{{ $doctor->name }}">
+                            @auth
+                                <input type="text" name="doctors[{{ $doctor->id }}][image]" value="{{ $doctor->image }}" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] p-1 focus:ring-0 border-none text-center" placeholder="URL Gambar">
+                            @endauth
+                        </div>
+                        <div class="w-full sm:w-3/5 p-6 flex flex-col justify-between">
+                            <div>
+                                @auth
+                                    <input type="text" name="doctors[{{ $doctor->id }}][name]" value="{{ $doctor->name }}" class="bg-transparent text-xl font-bold text-secondary focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Dokter">
+                                    <input type="text" name="doctors[{{ $doctor->id }}][title]" value="{{ $doctor->title }}" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider italic focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-3" placeholder="Spesialisasi">
+                                    <textarea name="doctors[{{ $doctor->id }}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border border-dashed border-slate-200 focus:ring-0 p-0 resize-none leading-relaxed" placeholder="Biografi singkat">{{ $doctor->text }}</textarea>
+                                @else
+                                    <h3 class="text-xl font-bold text-secondary mb-1">{{ $doctor->name }}</h3>
+                                    <h6 class="text-primary text-xs font-semibold uppercase tracking-wider italic mb-4">{{ $doctor->title }}</h6>
+                                    <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">{{ $doctor->text }}</p>
+                                @endauth
+                            </div>
+                            <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
+                                @auth
+                                    <input type="text" name="doctors[{{ $doctor->id }}][twitter]" value="{{ $doctor->twitter }}" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Twitter">
+                                    <input type="text" name="doctors[{{ $doctor->id }}][fb]" value="{{ $doctor->fb }}" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Facebook">
+                                    <input type="text" name="doctors[{{ $doctor->id }}][linkedin]" value="{{ $doctor->linkedin }}" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="LinkedIn">
+                                @else
+                                    <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="{{ $doctor->twitter }}"><i class="fab fa-twitter text-sm"></i></a>
+                                    <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="{{ $doctor->fb }}"><i class="fab fa-facebook-f text-sm"></i></a>
+                                    <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors" href="{{ $doctor->linkedin }}"><i class="fab fa-linkedin-in text-sm"></i></a>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+                @auth
+                    <button type="button" onclick="addDoctorCard()" class="group bg-transparent hover:bg-white border-2 border-dashed border-slate-300 hover:border-primary rounded-2xl overflow-hidden shadow-sm h-auto sm:h-64 transition-all duration-300 flex flex-col items-center justify-center text-center p-6 w-full" id="btn-add-doctor">
+                        <div class="inline-flex items-center justify-center w-14 h-14 bg-slate-100 group-hover:bg-primary/10 text-slate-400 group-hover:text-primary rounded-full mb-3 transition-all">
+                            <i class="fa fa-plus text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-400 group-hover:text-primary mb-1">Tambah Dokter</h3>
+                        <p class="text-slate-400 text-xs max-w-[180px]">Klik untuk mendaftarkan tenaga medis baru</p>
+                    </button>
+                @endauth
+            </div>
+        </div>
+    </section>
+
     <section class="py-20 lg:py-28 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-xl mx-auto mb-16">
-                <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">Testimonial</h5>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">Patients Say About Our Services</h2>
+                @auth
+                    <input type="text" 
+                        name="texts[testimony_badge]" 
+                        value="{{ $texts['testimony_badge'] }}" 
+                        class="bg-transparent text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-dashed border-primary/60 pb-1 inline-block mb-3 focus:border-primary focus:ring-0 p-0 max-w-full text-center"
+                        style="width: {{ strlen($texts['testimony_badge'] ?? '') * 0.65 }}rem;">
+                @else
+                    <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">
+                        {{ $texts['testimony_badge'] }}
+                    </h5>
+                @endauth
+
+                @auth
+                    <input type="text" 
+                        name="texts[testimony_title]" 
+                        value="{{ $texts['testimony_title'] }}" 
+                        class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
+                @else
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">
+                        {{ $texts['testimony_title'] }}
+                    </h2>
+                @endauth
             </div>
 
-            <!-- Testimonials Grid (Premium static cards instead of carousel) -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Testimonial card 1 -->
-                <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 text-center flex flex-col justify-between">
-                    <div>
-                        <div class="relative inline-block mb-6">
-                            <img class="w-20 h-20 rounded-full mx-auto ring-4 ring-primary/20" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80" alt="Patient Avatar">
-                            <div class="absolute -bottom-2 right-1/2 translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
-                                <i class="fa fa-quote-left text-primary text-xs"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="testimonials-container">
+                @foreach($testimonials as $testimony)
+                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 text-center flex flex-col justify-between relative group card-item" data-id="{{ $testimony->id }}">
+                        @auth
+                            <button type="button" onclick="removeTestimonyCard(this, '{{ $testimony->id }}')" class="absolute top-4 right-4 group-hover:opacity-100 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Testimoni">
+                                <i class="fas fa-trash-alt text-xs"></i>
+                            </button>
+                        @endauth
+                        <div>
+                            <div class="relative inline-block mb-6">
+                                <img class="w-20 h-20 rounded-full mx-auto ring-4 ring-primary/20" src="{{ $testimony->image }}" alt="Patient Avatar">
+                                @auth
+                                    <input type="text" name="testimonials[{{ $testimony->id }}][image]" value="{{ $testimony->image }}" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[9px] p-0.5 focus:ring-0 border-none text-center rounded" placeholder="Img URL">
+                                @endauth
+                                <div class="absolute -bottom-2 right-1/2 translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
+                                    <i class="fa fa-quote-left text-primary text-xs"></i>
+                                </div>
                             </div>
+                            @auth
+                                <textarea name="testimonials[{{ $testimony->id }}][text]" rows="4" class="w-full bg-transparent text-slate-500 italic text-base text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none mb-6" placeholder="Tulis review pasien...">{{ $testimony->text }}</textarea>
+                            @else
+                                <p class="text-slate-500 italic text-base leading-relaxed mb-6">"{{ $testimony->text }}"</p>
+                            @endauth
                         </div>
-                        <p class="text-slate-500 italic text-base leading-relaxed mb-6">"Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat."</p>
+                        <div>
+                            <hr class="w-12 mx-auto border-slate-200 mb-4">
+                            @auth
+                                <input type="text" name="testimonials[{{ $testimony->id }}][name]" value="{{ $testimony->name }}" class="bg-transparent text-lg font-bold text-secondary text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Pasien">
+                                <input type="text" name="testimonials[{{ $testimony->id }}][title]" value="{{ $testimony->title }}" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Pekerjaan / Jabatan">
+                            @else
+                                <h3 class="text-lg font-bold text-secondary">{{ $testimony->name }}</h3>
+                                <h6 class="text-primary text-xs font-semibold uppercase tracking-wider">{{ $testimony->title }}</h6>
+                            @endauth
+                        </div>
                     </div>
-                    <div>
-                        <hr class="w-12 mx-auto border-slate-200 mb-4">
-                        <h3 class="text-lg font-bold text-secondary">Jane Smith</h3>
-                        <h6 class="text-primary text-xs font-semibold uppercase tracking-wider">Teacher</h6>
-                    </div>
-                </div>
+                @endforeach
 
-                <!-- Testimonial card 2 -->
-                <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 text-center flex flex-col justify-between">
-                    <div>
-                        <div class="relative inline-block mb-6">
-                            <img class="w-20 h-20 rounded-full mx-auto ring-4 ring-primary/20" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" alt="Patient Avatar">
-                            <div class="absolute -bottom-2 right-1/2 translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
-                                <i class="fa fa-quote-left text-primary text-xs"></i>
-                            </div>
+                @auth
+                    <button type="button" onclick="addTestimonyCard()" class="group bg-transparent hover:bg-slate-50 border-2 border-dashed border-slate-300 hover:border-primary rounded-3xl p-8 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[360px] w-full" id="btn-add-testimony">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-slate-100 group-hover:bg-primary/10 text-slate-400 group-hover:text-primary rounded-full mb-4 transition-all">
+                            <i class="fa fa-plus text-xl"></i>
                         </div>
-                        <p class="text-slate-500 italic text-base leading-relaxed mb-6">"Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat."</p>
-                    </div>
-                    <div>
-                        <hr class="w-12 mx-auto border-slate-200 mb-4">
-                        <h3 class="text-lg font-bold text-secondary">Robert Johnson</h3>
-                        <h6 class="text-primary text-xs font-semibold uppercase tracking-wider">Business Owner</h6>
-                    </div>
-                </div>
-
-                <!-- Testimonial card 3 -->
-                <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 text-center flex flex-col justify-between">
-                    <div>
-                        <div class="relative inline-block mb-6">
-                            <img class="w-20 h-20 rounded-full mx-auto ring-4 ring-primary/20" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80" alt="Patient Avatar">
-                            <div class="absolute -bottom-2 right-1/2 translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
-                                <i class="fa fa-quote-left text-primary text-xs"></i>
-                            </div>
-                        </div>
-                        <p class="text-slate-500 italic text-base leading-relaxed mb-6">"Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat."</p>
-                    </div>
-                    <div>
-                        <hr class="w-12 mx-auto border-slate-200 mb-4">
-                        <h3 class="text-lg font-bold text-secondary">Emily Davis</h3>
-                        <h6 class="text-primary text-xs font-semibold uppercase tracking-wider">Software Engineer</h6>
-                    </div>
-                </div>
+                        <h3 class="text-lg font-bold text-slate-400 group-hover:text-primary mb-1">Tambah Testimoni</h3>
+                        <p class="text-slate-400 text-xs max-w-[180px]">Klik untuk memasukkan review pasien baru</p>
+                    </button>
+                @endauth
             </div>
         </div>
     </section>
-    <!-- Testimonial End -->
 
+    @auth
+        <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+            <a href="{{ url()->current() }}" 
+                class="w-14 h-14 bg-white text-slate-500 border border-slate-200 rounded-full flex items-center justify-center shadow-lg hover:bg-red-50 hover:text-danger hover:border-danger hover:scale-110 active:scale-95 transition-all duration-300" 
+                title="Batal & Refresh">
+                <i class="fas fa-times text-xl"></i>
+            </a>
 
-    <!-- Blog Start -->
-    <section class="py-20 lg:py-28 bg-slate-50 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-xl mx-auto mb-16">
-                <h5 class="text-primary text-sm font-bold uppercase tracking-wider border-b-4 border-primary pb-1 inline-block mb-3">Blog Post</h5>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">Our Latest Medical Blog Posts</h2>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Blog Item 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-56 overflow-hidden group">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Blog Post Title">
-                        </div>
-                        <div class="p-6">
-                            <a href="#!" class="h4 text-xl font-bold text-secondary hover:text-primary transition-colors mb-3 block leading-tight">Dolor clita vero elitr sea stet dolor justo diam</a>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-4">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna rebum clita rebum dolor stet amet justo.</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                            <img class="w-7 h-7 rounded-full object-cover ring-2 ring-primary/20" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80" alt="Author">
-                            <span class="text-xs text-slate-500 font-medium">John Doe</span>
-                        </div>
-                        <div class="flex items-center space-x-3 text-xs text-slate-400">
-                            <span><i class="far fa-eye text-primary mr-1"></i>12k</span>
-                            <span><i class="far fa-comment text-primary mr-1"></i>89</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog Item 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-56 overflow-hidden group">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="Blog Post Title">
-                        </div>
-                        <div class="p-6">
-                            <a href="#!" class="h4 text-xl font-bold text-secondary hover:text-primary transition-colors mb-3 block leading-tight">Dolor clita vero elitr sea stet dolor justo diam</a>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-4">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna rebum clita rebum dolor stet amet justo.</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                            <img class="w-7 h-7 rounded-full object-cover ring-2 ring-primary/20" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80" alt="Author">
-                            <span class="text-xs text-slate-500 font-medium">John Doe</span>
-                        </div>
-                        <div class="flex items-center space-x-3 text-xs text-slate-400">
-                            <span><i class="far fa-eye text-primary mr-1"></i>9.4k</span>
-                            <span><i class="far fa-comment text-primary mr-1"></i>74</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog Item 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-56 overflow-hidden group">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1504813184591-01557010c722?auto=format&fit=crop&w=600&q=80" alt="Blog Post Title">
-                        </div>
-                        <div class="p-6">
-                            <a href="#!" class="h4 text-xl font-bold text-secondary hover:text-primary transition-colors mb-3 block leading-tight">Dolor clita vero elitr sea stet dolor justo diam</a>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-4">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna rebum clita rebum dolor stet amet justo.</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                            <img class="w-7 h-7 rounded-full object-cover ring-2 ring-primary/20" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80" alt="Author">
-                            <span class="text-xs text-slate-500 font-medium">John Doe</span>
-                        </div>
-                        <div class="flex items-center space-x-3 text-xs text-slate-400">
-                            <span><i class="far fa-eye text-primary mr-1"></i>14.8k</span>
-                            <span><i class="far fa-comment text-primary mr-1"></i>105</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button type="submit"
+                    class="w-14 h-14 bg-primary text-secondary rounded-full flex items-center justify-center shadow-lg shadow-primary/30 hover:bg-white hover:text-primary hover:scale-110 active:scale-95 transition-all duration-300" 
+                    title="Simpan Perubahan">
+                <i class="fas fa-save text-xl"></i>
+            </button>
         </div>
-    </section>
-    <!-- Blog End -->
+    </form>
+
+    <script>
+        function generateUniqueId() {
+            return 'new_' + Date.now() + Math.random().toString(36).substr(2, 5);
+        }
+
+        function removeCard(button, cardId) {
+            const cardItem = button.closest('.card-item');
+            if (cardId && !cardId.startsWith('new_')) {
+                const container = document.getElementById('deleted-cards-container');
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'delete_cards[]';
+                hiddenInput.value = cardId;
+                container.appendChild(hiddenInput);
+            }
+            cardItem.remove();
+        }
+
+        function removeDoctorCard(button, doctorId) {
+            const cardItem = button.closest('.card-item');
+            if (doctorId && !doctorId.startsWith('new_')) {
+                const container = document.getElementById('deleted-cards-container');
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'delete_doctors[]';
+                hiddenInput.value = doctorId;
+                container.appendChild(hiddenInput);
+            }
+            cardItem.remove();
+        }
+
+        function removeTestimonyCard(button, testimonyId) {
+            const cardItem = button.closest('.card-item');
+            if (testimonyId && !testimonyId.startsWith('new_')) {
+                const container = document.getElementById('deleted-cards-container');
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'delete_testimonials[]';
+                hiddenInput.value = testimonyId;
+                container.appendChild(hiddenInput);
+            }
+            cardItem.remove();
+        }
+
+        function addAboutCard() {
+            const btnAdd = document.getElementById('btn-add-about');
+            const newId = generateUniqueId();
+            const cardHtml = `
+                <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6 relative group card-item">
+                    <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-2 right-2 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus Card">
+                        <i class="fas fa-trash-alt text-xs"></i>
+                    </button>
+                    <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
+                        <input type="text" name="new_cards[${newId}][icon]" value="fas fa-heartbeat" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b border-dashed border-primary/40 w-full" placeholder="Icon Class">
+                    </div>
+                    <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent font-bold text-secondary text-sm sm:text-base text-center focus:ring-0 p-0 border-b border-dashed border-primary/20 w-full" placeholder="Judul Card" required>
+                    <input type="hidden" name="new_cards[${newId}][section]" value="about">
+                </div>
+            `;
+            btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
+        }
+
+        function addServiceCard() {
+            const btnAdd = document.getElementById('btn-add-service');
+            const newId = generateUniqueId();
+            const cardHtml = `
+                <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center relative card-item">
+                    <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-4 right-4 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-7 h-7 rounded-full flex items-center justify-center shadow z-10" title="Hapus Card">
+                        <i class="fas fa-trash-alt text-xs"></i>
+                    </button>
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6">
+                        <input type="text" name="new_cards[${newId}][icon]" value="bi bi-activity" class="bg-transparent text-white text-center text-xs focus:ring-0 p-0 border-b border-dashed border-white/40 w-full" placeholder="Icon Class">
+                    </div>
+                    <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent text-xl font-bold text-secondary mb-4 text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Layanan Baru" required>
+                    <textarea name="new_cards[${newId}][text]" rows="3" class="w-full bg-transparent text-slate-500 mb-6 text-sm text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none" placeholder="Deskripsi Layanan..." required></textarea>
+                    <input type="hidden" name="new_cards[${newId}][section]" value="service">
+                    <div class="w-12 h-12 bg-slate-100 text-secondary rounded-full flex items-center justify-center">
+                        <i class="bi bi-arrow-right text-lg"></i>
+                    </div>
+                </div>
+            `;
+            btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
+        }
+
+        function addDoctorCard() {
+            const btnAdd = document.getElementById('btn-add-doctor');
+            const newId = generateUniqueId();
+            const cardHtml = `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64 relative group card-item">
+                    <button type="button" onclick="removeDoctorCard(this, '${newId}')" class="absolute top-2 right-2 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Dokter">
+                        <i class="fas fa-trash-alt text-xs"></i>
+                    </button>
+                    <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden relative">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" alt="New Doctor">
+                        <input type="text" name="new_doctors[${newId}][image]" value="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] p-1 focus:ring-0 border-none text-center" placeholder="URL Gambar">
+                    </div>
+                    <div class="w-full sm:w-3/5 p-6 flex flex-col justify-between">
+                        <div>
+                            <input type="text" name="new_doctors[${newId}][name]" value="" class="bg-transparent text-xl font-bold text-secondary focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Dokter" required>
+                            <input type="text" name="new_doctors[${newId}][title]" value="" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider italic focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-3" placeholder="Spesialisasi" required>
+                            <textarea name="new_doctors[${newId}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border border-dashed border-slate-200 focus:ring-0 p-0 resize-none leading-relaxed" placeholder="Biografi Dokter..." required></textarea>
+                        </div>
+                        <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
+                            <input type="text" name="new_doctors[${newId}][twitter]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Twitter">
+                            <input type="text" name="new_doctors[${newId}][fb]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Facebook">
+                            <input type="text" name="new_doctors[${newId}][linkedin]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="LinkedIn">
+                        </div>
+                    </div>
+                </div>
+            `;
+            btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
+        }
+
+        function addTestimonyCard() {
+            const btnAdd = document.getElementById('btn-add-testimony');
+            const newId = generateUniqueId();
+            const cardHtml = `
+                <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 text-center flex flex-col justify-between relative group card-item">
+                    <button type="button" onclick="removeTestimonyCard(this, '${newId}')" class="absolute top-4 right-4 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Testimoni">
+                        <i class="fas fa-trash-alt text-xs"></i>
+                    </button>
+                    <div>
+                        <div class="relative inline-block mb-6">
+                            <img class="w-20 h-20 rounded-full mx-auto ring-4 ring-primary/20" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" alt="Patient Avatar">
+                            <input type="text" name="new_testimonials[${newId}][image]" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[9px] p-0.5 focus:ring-0 border-none text-center rounded" placeholder="Img URL">
+                            <div class="absolute -bottom-2 right-1/2 translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
+                                <i class="fa fa-quote-left text-primary text-xs"></i>
+                            </div>
+                        </div>
+                        <textarea name="new_testimonials[${newId}][text]" rows="4" class="w-full bg-transparent text-slate-500 italic text-base text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none mb-6" placeholder="Tulis review testimoni..." required></textarea>
+                    </div>
+                    <div>
+                        <hr class="w-12 mx-auto border-slate-200 mb-4">
+                        <input type="text" name="new_testimonials[${newId}][name]" value="" class="bg-transparent text-lg font-bold text-secondary text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Pasien" required>
+                        <input type="text" name="new_testimonials[${newId}][title]" value="" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Pekerjaan / Jabatan" required>
+                    </div>
+                </div>
+            `;
+            btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
+        }
+    </script>
+    @endauth
+
 @endsection
