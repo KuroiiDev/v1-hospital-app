@@ -115,10 +115,12 @@
 
                 <!-- Desktop Menu -->
                 <nav class="hidden lg:flex space-x-1 items-center">
-                    <a href="{{ route('home') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('home') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Home</a>
-                    <a href="{{ route('about') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('about') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">About</a>
-                    <a href="{{ route('service') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('service') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Service</a>
-                    <a href="{{ route('contact') }}" class="px-4 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('contact') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Contact</a>
+                    <a href="#home" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-slate-600 hover:text-primary hover:bg-slate-50'">Home</a>
+                    <a href="#about" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">About</a>
+                    <a href="#service" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Service</a>
+                    <a href="#doctors" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Doctors</a>
+                    <a href="#testimony" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Testimony</a>
+                    <a href="#contact" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Contact</a>
                     
                     <!-- MENU ADMIN JIKA LOGIN (DESKTOP) -->
                     @auth
