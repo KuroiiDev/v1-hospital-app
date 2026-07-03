@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PresiMedic - Hospital for you and your family</title>
+    <title>PURTH - President University Research & Teaching Hospital</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Hospital, Medical Care, PresiMedic" name="keywords">
     <meta content="Best Medical Care For Yourself and Your Family" name="description">
@@ -115,12 +115,12 @@
 
                 <!-- Desktop Menu -->
                 <nav class="hidden lg:flex space-x-1 items-center">
-                    <a href="#home" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-slate-600 hover:text-primary hover:bg-slate-50'">Home</a>
-                    <a href="#about" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">About</a>
-                    <a href="#service" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Service</a>
-                    <a href="#doctors" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Doctors</a>
-                    <a href="#testimony" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Testimony</a>
-                    <a href="#contact" class="px-4 py-2 rounded-md text-base font-medium transition-colors 'text-primary bg-slate-50' 'text-slate-600 hover:text-primary hover:bg-slate-50'">Contact</a>
+                    <a href="#home" class="px-4 py-2 rounded-md text-base font-medium transition-colors text-slate-600 hover:text-primary hover:bg-slate-50">Home</a>
+                    <a href="#about" class="px-4 py-2 rounded-md text-base font-medium transition-colors text-slate-600 hover:text-primary hover:bg-slate-50">About</a>
+                    <a href="#academic" class="px-4 py-2 rounded-md text-base font-medium transition-colors text-slate-600 hover:text-primary hover:bg-slate-50">Academic & Research</a>
+                    <a href="#service" class="px-4 py-2 rounded-md text-base font-medium transition-colors text-slate-600 hover:text-primary hover:bg-slate-50">Service</a>
+                    <a href="#leadership" class="px-4 py-2 rounded-md text-base font-medium transition-colors text-slate-600 hover:text-primary hover:bg-slate-50">Leadership</a>
+                    <a href="#contact" class="px-4 py-2 rounded-md text-base font-medium transition-colors text-slate-600 hover:text-primary hover:bg-slate-50">Contact</a>
                     
                     <!-- MENU ADMIN JIKA LOGIN (DESKTOP) -->
                     @auth
@@ -152,10 +152,12 @@
         <!-- Mobile Menu -->
         <div class="hidden lg:hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-slate-100 shadow-lg">
-                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('home') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Home</a>
-                <a href="{{ route('about') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('about') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">About</a>
-                <a href="{{ route('service') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('service') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Service</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('contact') ? 'text-primary bg-slate-50' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">Contact</a>
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-primary hover:bg-slate-50">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-primary hover:bg-slate-50">About</a>
+                <a href="#academic" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-primary hover:bg-slate-50">Academic & Research</a>
+                <a href="#service" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-primary hover:bg-slate-50">Service</a>
+                <a href="#leadership" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-primary hover:bg-slate-50">Leadership</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-primary hover:bg-slate-50">Contact</a>
                 
                 <!-- MENU ADMIN JIKA LOGIN (MOBILE) -->
                 @auth

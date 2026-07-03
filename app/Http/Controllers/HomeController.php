@@ -16,12 +16,14 @@ class HomeController extends Controller
         $texts = HomeText::pluck('value', 'id'); 
             
         $aboutCards = HomeCard::where('section', 'about')->orderBy('sort_order')->get();
+        $missionCards = HomeCard::where('section', 'mission')->orderBy('sort_order')->get();
+        $coreValuesCards = HomeCard::where('section', 'core_values')->orderBy('sort_order')->get();
         $serviceCards = HomeCard::where('section', 'service')->orderBy('sort_order')->get();
         
         $doctors = HomeDoctor::orderBy('sort_order')->get();
         $testimonials = HomeTestimony::latest()->get();
 
-        return view('pages.index', compact('texts', 'aboutCards', 'serviceCards', 'doctors', 'testimonials'));
+        return view('pages.index', compact('texts', 'aboutCards', 'missionCards', 'coreValuesCards', 'serviceCards', 'doctors', 'testimonials'));
     }
 
     public function update(Request $request)

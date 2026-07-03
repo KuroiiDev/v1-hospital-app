@@ -7,6 +7,7 @@ use App\Models\HomeText;
 use App\Models\HomeCard;
 use App\Models\HomeDoctor;
 use App\Models\HomeTestimony;
+use Illuminate\Support\Facades\DB;
 
 class HomeSeeder extends Seeder
 {
@@ -14,44 +15,90 @@ class HomeSeeder extends Seeder
     public function run(): void
     {
         $texts = [
-            'hero_badge'       => 'Welcome To PresiMedic',
-            'hero_title'       => 'Best Healthcare Solution In Your City',
-            'hero_desc'        => 'We offer comprehensive outpatient services, advanced diagnostic tools, and state-of-the-art emergency rooms to keep you and your family healthy.',
-            'hero_btn_1_text'  => 'Our Services',
-            'hero_btn_2_text'  => 'Appointment',
-            'about_badge'      => 'About Us',
-            'about_title'      => 'Best Medical Care For Yourself and Your Family',
-            'about_desc'       => 'Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod.',
-            'services_badge'   => 'Services',
-            'services_title'   => 'Excellent Medical Services',
-            'doctors_badge'    => 'Our Doctors',
-            'doctors_title'    => 'Qualified Healthcare Professionals',
+            'hero_badge'       => 'PRESIDENT UNIVERSITY RESEARCH & TEACHING HOSPITAL',
+            'hero_title'       => 'PURTH',
+            'hero_desc'        => 'Advancing Healthcare Through Education, Research, and Innovation',
+            'hero_btn_1_text'  => 'About PURTH',
+            'hero_btn_2_text'  => 'Contact Us',
+            
+            'about_badge'      => 'About PURTH',
+            'about_title'      => 'Welcome to PURTH',
+            'about_desc'       => 'President University Research & Teaching Hospital (PURTH) is a general hospital that integrates high-quality healthcare services with education, research, and community engagement as the teaching hospital of the Faculty of Medicine, President University. Guided by the Academic Health System concept, PURTH brings together clinical care, medical education, clinical research, and healthcare innovation within a collaborative ecosystem. This integrated approach enables patients to receive evidence-based medical care while providing an excellent learning environment for medical students, healthcare professionals, and researchers.',
+            
+            'academic_badge'   => 'Education & Research',
+            'academic_title'   => 'Advancing Healthcare Through Innovation',
+            'academic_desc'    => 'As a teaching hospital, PURTH plays a strategic role in advancing medical education, research, and healthcare innovation through: Clinical education for medical students, clinical research to support evidence-based medicine, professional training, and national/international academic collaborations.',
+            'vision_text'      => 'To become an internationally recognized teaching hospital, distinguished for excellence in healthcare services, medical education, research, and innovation, improving the quality of life of the community while strengthening regional competitiveness.',
+            
+            'services_badge'   => 'Medical Services',
+            'services_title'   => 'Our Comprehensive Medical Offerings',
+            
+            'doctors_badge'    => 'Hospital Leadership',
+            'doctors_title'    => 'Board of Directors',
+            
             'testimony_badge'  => 'Testimonial',
             'testimony_title'  => 'Patients Say About Our Services',
+
+            'contact_badge'    => 'Contact Us',
+            'contact_title'    => 'Please Feel Free To Contact Us',
+            'contact_address'  => 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia',
+            'contact_email'    => 'purth@president.ac.id',
+            'contact_phone'    => '+62 21-8984-0530',
+            'contact_map_url'  => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.1818274712574!2d107.1687352!3d-6.2863773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6985aee2eec2df%3A0x6bda194fbcff3b4b!2sPresident%20University!5e0!3m2!1sen!2sid!4v1699999999999!5m2!1sen!2sid',
         ];
 
         foreach ($texts as $id => $value) {
             HomeText::updateOrCreate(['id' => $id], ['value' => $value]);
         }
 
+        // Clean tables
+        DB::table('home_cards')->truncate();
+        DB::table('home_doctors')->truncate();
+        DB::table('home_testimonies')->truncate();
+
         $aboutCards = [
-            ['icon' => 'fa fa-user-md', 'title' => 'Qualified Doctors', 'text' => null, 'sort_order' => 1],
-            ['icon' => 'fa fa-procedures', 'title' => 'Emergency Services', 'text' => null, 'sort_order' => 2],
-            ['icon' => 'fa fa-microscope', 'title' => 'Accurate Testing', 'text' => null, 'sort_order' => 3],
-            ['icon' => 'fa fa-ambulance', 'title' => 'Free Ambulance', 'text' => null, 'sort_order' => 4],
+            ['icon' => 'fas fa-university', 'title' => 'Academic Teaching Hospital', 'text' => null, 'sort_order' => 1],
+            ['icon' => 'fas fa-hospital-alt', 'title' => 'Modern Medical Facilities', 'text' => null, 'sort_order' => 2],
+            ['icon' => 'fas fa-user-md', 'title' => 'Experienced Medical Professionals', 'text' => null, 'sort_order' => 3],
+            ['icon' => 'fas fa-microscope', 'title' => 'Evidence-Based Healthcare', 'text' => null, 'sort_order' => 4],
         ];
 
         foreach ($aboutCards as $card) {
             HomeCard::create(array_merge($card, ['section' => 'about']));
         }
 
+        $missionCards = [
+            ['icon' => 'fas fa-check-circle', 'title' => 'Quality Healthcare', 'text' => 'To deliver professional, safe, high-quality, and patient-centered healthcare services.', 'sort_order' => 1],
+            ['icon' => 'fas fa-check-circle', 'title' => 'Clinical Education', 'text' => 'To serve as the primary teaching hospital for the Faculty of Medicine, President University, by providing excellence in clinical education and training.', 'sort_order' => 2],
+            ['icon' => 'fas fa-check-circle', 'title' => 'Research & Innovation', 'text' => 'To advance healthcare research and innovation that contribute to the well-being of society and the development of the healthcare industry.', 'sort_order' => 3],
+            ['icon' => 'fas fa-check-circle', 'title' => 'Strategic Partnerships', 'text' => 'To establish strategic partnerships with academic institutions, healthcare organizations, government agencies, industry, and international partners.', 'sort_order' => 4],
+            ['icon' => 'fas fa-check-circle', 'title' => 'Professional Development', 'text' => 'To develop healthcare professionals who demonstrate integrity, professionalism, adaptability to emerging healthcare technologies, and a global perspective.', 'sort_order' => 5],
+            ['icon' => 'fas fa-check-circle', 'title' => 'Hospital Governance', 'text' => 'To implement effective, transparent, accountable, and sustainable hospital governance.', 'sort_order' => 6],
+        ];
+
+        foreach ($missionCards as $card) {
+            HomeCard::create(array_merge($card, ['section' => 'mission']));
+        }
+
+        $coreValuesCards = [
+            ['icon' => 'fas fa-star', 'title' => 'P – Professionalism', 'text' => 'Delivering healthcare services in accordance with the highest professional standards and ethical principles.', 'sort_order' => 1],
+            ['icon' => 'fas fa-star', 'title' => 'R – Respect', 'text' => 'Treating every patient, family member, and healthcare professional with dignity, respect, and compassion.', 'sort_order' => 2],
+            ['icon' => 'fas fa-star', 'title' => 'E – Excellence', 'text' => 'Striving for excellence through continuous quality improvement, innovation, and outstanding performance.', 'sort_order' => 3],
+            ['icon' => 'fas fa-star', 'title' => 'S – Service', 'text' => 'Providing compassionate, responsive, and patient-centered care with sincerity and dedication.', 'sort_order' => 4],
+            ['icon' => 'fas fa-star', 'title' => 'I – Integrity', 'text' => 'Upholding honesty, accountability, transparency, and ethical conduct in every aspect of our work.', 'sort_order' => 5],
+            ['icon' => 'fas fa-star', 'title' => 'D – Development', 'text' => 'Fostering continuous growth through education, research, innovation, and lifelong learning.', 'sort_order' => 6],
+            ['icon' => 'fas fa-star', 'title' => 'E – Empathy', 'text' => 'Understanding and responding to the needs of patients and their families with compassion and kindness.', 'sort_order' => 7],
+            ['icon' => 'fas fa-star', 'title' => 'N – Networking', 'text' => 'Building strong partnerships and collaborations with national and international institutions to advance healthcare, education, and research.', 'sort_order' => 8],
+            ['icon' => 'fas fa-star', 'title' => 'T – Trust', 'text' => 'Earning and maintaining the trust of our patients, partners, and communities through excellence, reliability, and integrity.', 'sort_order' => 9],
+        ];
+
+        foreach ($coreValuesCards as $card) {
+            HomeCard::create(array_merge($card, ['section' => 'core_values']));
+        }
+
         $serviceCards = [
-            ['icon' => 'fa fa-user-md', 'title' => 'Emergency Care', 'text' => 'Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.', 'sort_order' => 1],
-            ['icon' => 'fa fa-procedures', 'title' => 'Operation & Surgery', 'text' => 'Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.', 'sort_order' => 2],
-            ['icon' => 'fa fa-stethoscope', 'title' => 'Outdoor Checkup', 'text' => 'Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.', 'sort_order' => 3],
-            ['icon' => 'fa fa-ambulance', 'title' => 'Ambulance Service', 'text' => 'Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.', 'sort_order' => 4],
-            ['icon' => 'fa fa-pills', 'title' => 'Medicine & Pharmacy', 'text' => 'Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.', 'sort_order' => 5],
-            ['icon' => 'fa fa-microscope', 'title' => 'Blood Testing', 'text' => 'Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo elitr dolor amet sit.', 'sort_order' => 6],
+            ['icon' => 'fas fa-briefcase-medical', 'title' => 'General Services', 'text' => 'General Practitioner, Medical Check Up, Emergency Services, Laboratory, Pharmacy, Radiology', 'sort_order' => 1],
+            ['icon' => 'fas fa-stethoscope', 'title' => 'Specialist Services', 'text' => 'Pediatrics, Internal Medicine, General Surgery, Obstetrics & Gynecology', 'sort_order' => 2],
         ];
 
         foreach ($serviceCards as $card) {
@@ -60,64 +107,49 @@ class HomeSeeder extends Seeder
 
         $doctors = [
             [
-                'image'      => 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80',
-                'name'       => 'Dr. John Doe',
-                'title'      => 'Cardiology Specialist',
-                'text'       => 'Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor.',
+                'image'      => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+                'name'       => 'Johanes Poso',
+                'title'      => 'President Director',
+                'text'       => 'Johanes Poso is the Founder and President Director of PT Rumah Prima Sehat. With decades of experience in healthcare development, he has successfully built and expanded healthcare facilities from a community pharmacy into a modern hospital network. His leadership is driven by a commitment to delivering accessible, high-quality, and patient-centered healthcare services.',
                 'twitter'    => '#',
                 'fb'         => '#',
                 'linkedin'   => '#',
                 'sort_order' => 1
             ],
             [
-                'image'      => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80',
-                'name'       => 'Dr. Alex Smith',
-                'title'      => 'Cardiology Specialist',
-                'text'       => 'Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor.',
+                'image'      => 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80',
+                'name'       => 'Setiawan Mardjuki',
+                'title'      => 'Director',
+                'text'       => 'Setiawan Mardjuki is an experienced executive with extensive expertise in industrial estate development, real estate, investment, and corporate management. He holds a Master of Computer Science and a Master of Finance from California State University, USA. At PT Rumah Prima Sehat, he provides strategic leadership to support sustainable growth and the delivery of high-quality healthcare services.',
                 'twitter'    => '#',
                 'fb'         => '#',
                 'linkedin'   => '#',
                 'sort_order' => 2
             ],
             [
-                'image'      => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80',
-                'name'       => 'Dr. Sarah Jenkins',
-                'title'      => 'Cardiology Specialist',
-                'text'       => 'Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor.',
+                'image'      => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                'name'       => 'Theodora Elyas, Apt., S.Farm.',
+                'title'      => 'Hospital Director',
+                'text'       => 'Theodora Elyas is a licensed pharmacist with extensive experience in hospital support services and healthcare operations. She is committed to strengthening clinical support, operational excellence, and quality standards to ensure safe, efficient, and patient-centered healthcare services.',
                 'twitter'    => '#',
                 'fb'         => '#',
                 'linkedin'   => '#',
                 'sort_order' => 3
             ],
+            [
+                'image'      => 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+                'name'       => 'Agus Baharudin Soleh, S.Pd., M.M.',
+                'title'      => 'Vice Director of General Affair',
+                'text'       => 'Agus Baharudin Soleh is a healthcare and hospitality management professional with over 15 years of leadership experience in operations, project management, and organizational development. He holds a Master of Management from President University and a Bachelor of Education from Mathla\'ul Anwar University. As Hospital Vice Director, he is committed to driving operational excellence, innovation, and patient-centered healthcare services.',
+                'twitter'    => '#',
+                'fb'         => '#',
+                'linkedin'   => '#',
+                'sort_order' => 4
+            ],
         ];
 
         foreach ($doctors as $doctor) {
             HomeDoctor::create($doctor);
-        }
-
-        $testimonials = [
-            [
-                'image' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80',
-                'name'  => 'Jane Smith',
-                'title' => 'Teacher',
-                'text'  => 'Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.',
-            ],
-            [
-                'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80',
-                'name'  => 'Robert Johnson',
-                'title' => 'Business Owner',
-                'text'  => 'Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.',
-            ],
-            [
-                'image' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80',
-                'name'  => 'Emily Davis',
-                'title' => 'Software Engineer',
-                'text'  => 'Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.',
-            ],
-        ];
-
-        foreach ($testimonials as $testimony) {
-            HomeTestimony::create($testimony);
         }
     }
     
