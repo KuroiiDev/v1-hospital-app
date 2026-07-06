@@ -108,8 +108,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-2">
-                        <i class="fa fa-clinic-medical text-3xl text-primary"></i>
-                        <span class="text-2xl font-bold tracking-wider text-secondary uppercase">PresiMedic</span>
+                        <img src="{{ asset('images/navbar-logo.png') }}" alt="Logo" class="h-10 w-auto">
                     </a>
                 </div>
 
@@ -218,17 +217,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('about') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#about" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>About Us
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('service') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#service" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Our Services
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('contact') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#contact" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Contact Us
                             </a>
                         </li>
@@ -245,17 +244,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('about') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#about" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>About Us
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('service') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#service" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Our Services
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('contact') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#contact" class="hover:text-primary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Contact Us
                             </a>
                         </li>
