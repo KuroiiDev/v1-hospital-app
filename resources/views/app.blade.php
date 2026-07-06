@@ -184,7 +184,7 @@
 
 
     <!-- Footer Start -->
-    <footer class="bg-secondary text-slate-300">
+    <footer class="bg-primary text-slate-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 <!-- Column 1: Contact -->
@@ -212,22 +212,22 @@
                     <h4 class="text-white text-lg font-semibold uppercase tracking-wider border-b-4 border-primary pb-3 mb-6 inline-block">Quick Links</h4>
                     <ul class="space-y-3 text-sm">
                         <li>
-                            <a href="{{ route('home') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="{{ route('home') }}" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Home
                             </a>
                         </li>
                         <li>
-                            <a href="#about" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#about" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>About Us
                             </a>
                         </li>
                         <li>
-                            <a href="#service" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#service" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Our Services
                             </a>
                         </li>
                         <li>
-                            <a href="#contact" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#contact" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Contact Us
                             </a>
                         </li>
@@ -239,22 +239,22 @@
                     <h4 class="text-white text-lg font-semibold uppercase tracking-wider border-b-4 border-primary pb-3 mb-6 inline-block">Popular Links</h4>
                     <ul class="space-y-3 text-sm">
                         <li>
-                            <a href="{{ route('home') }}" class="hover:text-primary transition-colors flex items-center">
+                            <a href="{{ route('home') }}" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Home
                             </a>
                         </li>
                         <li>
-                            <a href="#about" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#about" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>About Us
                             </a>
                         </li>
                         <li>
-                            <a href="#service" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#service" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Our Services
                             </a>
                         </li>
                         <li>
-                            <a href="#contact" class="hover:text-primary transition-colors flex items-center">
+                            <a href="#contact" class="hover:text-secondary transition-colors flex items-center">
                                 <i class="fa fa-angle-right mr-2 text-primary"></i>Contact Us
                             </a>
                         </li>
@@ -268,21 +268,21 @@
                     <form action="#" class="mb-6">
                         <div class="flex">
                             <input type="email" class="w-full px-4 py-3 bg-slate-800 text-white rounded-l border-0 focus:ring-2 focus:ring-primary text-sm placeholder-slate-500" placeholder="Your Email Address" required>
-                            <button type="submit" class="bg-primary hover:bg-primary-hover text-secondary font-semibold px-4 py-3 rounded-r text-sm transition-colors uppercase">Sign Up</button>
+                            <button type="submit" class="bg-slate-800 hover:bg-slate-400 text-white hover:text-secondary font-semibold px-4 py-3 rounded-r text-sm transition-colors uppercase">Sign Up</button>
                         </div>
                     </form>
                     <h5 class="text-primary text-sm font-semibold uppercase tracking-wider mb-3">Follow Us</h5>
                     <div class="flex space-x-2">
-                        <a class="w-10 h-10 bg-slate-800 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="Twitter">
+                        <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a class="w-10 h-10 bg-slate-800 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="Facebook">
+                        <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="w-10 h-10 bg-slate-800 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="LinkedIn">
+                        <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a class="w-10 h-10 bg-slate-800 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="Instagram">
+                        <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400" href="#!" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
@@ -291,14 +291,14 @@
         </div>
         
         <!-- Copyright Banner -->
-        <div class="border-t border-slate-800 bg-[#151e37] py-6 text-sm text-slate-400">
+        <div class="border-t border-slate-800 bg-secondary py-6 text-sm text-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
                     <div>
-                        <p>&copy; <a class="text-primary hover:underline" href="{{ route('home') }}">PresiMedic</a>. All Rights Reserved.</p>
+                        <p>&copy; <a class="text-white hover:underline" href="{{ route('home') }}">PresiMedic</a>. All Rights Reserved.</p>
                     </div>
                     <div class="md:text-right">
-                        <p>Designed by <span class="text-primary">HTML Codex</span>. Distributed by <span class="text-primary">ThemeWagon</span>.</p>
+                        <p>Designed by <span class="text-white">HTML Codex</span>. Distributed by <span class="text-white">ThemeWagon</span>.</p>
                     </div>
                 </div>
             </div>
@@ -306,7 +306,7 @@
     </footer>
     <!-- Footer End -->
 
-    <!-- Mobile Navigation Menu Script and Back to Top Script -->
+    <!-- Mobile Navigation Menu Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Mobile Menu Toggle

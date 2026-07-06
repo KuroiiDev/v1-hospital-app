@@ -13,9 +13,9 @@
             class="relative bg-primary overflow-hidden py-24 md:py-32 lg:py-48 flex items-center min-h-[600px] lg:min-h-[750px]">
             <div class="absolute inset-0 z-0">
                 <img class="w-full h-full object-cover opacity-35"
-                    src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80"
+                    src="{{ asset('images/home/hero-cover.jpeg') }}"
                     alt="Hospital lobby background">
-                <div class="absolute inset-0 bg-gradient-to-r from-primary-hover via-primary/85 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-transparent"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -76,7 +76,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                     <div class="lg:col-span-5 h-[400px] sm:h-[500px] lg:h-[600px] relative">
                         <img class="w-full h-full object-cover rounded-2xl shadow-xl"
-                            src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80"
+                            src="{{ asset('images/home/about-cover.jpeg') }}"
                             alt="About PresiMedic doctors">
                         <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full -z-10"></div>
                     </div>
