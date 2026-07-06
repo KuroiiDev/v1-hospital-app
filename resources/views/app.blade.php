@@ -64,34 +64,34 @@
 @endif
 
     {{-- Top Bar --}}
-    <div class="w-full bg-white border-b border-slate-100 py-2 hidden lg:block">
+    <div class="w-full bg-secondary border-b border-slate-100 py-2 hidden lg:block">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center text-sm text-slate-500">
+            <div class="flex justify-between items-center text-sm text-white">
                 <div class="flex items-center space-x-6">
                     <a href="tel:+0123456789" class="hover:text-primary transition-colors flex items-center">
-                        <i class="bi bi-telephone text-primary mr-2"></i>
+                        <i class="bi bi-telephone text-white mr-2"></i>
                         <span>+012 345 6789</span>
                     </a>
                     <span class="text-slate-200">|</span>
                     <a href="mailto:info@president.ac.id" class="hover:text-primary transition-colors flex items-center">
-                        <i class="bi bi-envelope text-primary mr-2"></i>
+                        <i class="bi bi-envelope text-white mr-2"></i>
                         <span>info@president.ac.id</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a class="text-slate-400 hover:text-primary transition-colors" href="#!" aria-label="Facebook">
+                <div class="flex items-center space-x-4 text-white">
+                    <a class="hover:text-primary transition-colors" href="#!" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a class="text-slate-400 hover:text-primary transition-colors" href="#!" aria-label="Twitter">
+                    <a class="hover:text-primary transition-colors" href="#!" aria-label="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a class="text-slate-400 hover:text-primary transition-colors" href="#!" aria-label="LinkedIn">
+                    <a class="hover:text-primary transition-colors" href="#!" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a class="text-slate-400 hover:text-primary transition-colors" href="#!" aria-label="Instagram">
+                    <a class="hover:text-primary transition-colors" href="#!" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="text-slate-400 hover:text-primary transition-colors" href="#!" aria-label="YouTube">
+                    <a class="hover:text-primary transition-colors" href="#!" aria-label="YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -190,7 +190,7 @@
                 <!-- Column 1: Contact -->
                 <div>
                     <h4 class="text-white text-lg font-semibold uppercase tracking-wider border-b-4 border-primary pb-3 mb-6 inline-block">Get In Touch</h4>
-                    <p class="mb-6 text-slate-400">At PresiMedic, we deliver state-of-the-art care. Reach out to us for any medical emergencies or inquiries.</p>
+                    <p class="mb-6 text-slate-400">At PURTH, we deliver state-of-the-art care. Reach out to us for any medical emergencies or inquiries.</p>
                     <div class="space-y-4 text-sm">
                         <div class="flex items-start">
                             <i class="fa fa-map-marker-alt text-primary mt-1 mr-3 w-4 text-center"></i>
@@ -291,14 +291,20 @@
         </div>
         
         <!-- Copyright Banner -->
-        <div class="border-t border-slate-800 bg-secondary py-6 text-sm text-black">
+        <div class="border-t border-slate-800 bg-white py-6 text-sm text-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
                     <div>
-                        <p>&copy; <a class="text-white hover:underline" href="{{ route('home') }}">PresiMedic</a>. All Rights Reserved.</p>
+                        <p>&copy; <a class="text-secondary hover:underline" href="{{ route('home') }}">PURTH</a>. All Rights Reserved.</p>
                     </div>
                     <div class="md:text-right">
-                        <p>Designed by <span class="text-white">HTML Codex</span>. Distributed by <span class="text-white">ThemeWagon</span>.</p>
+                        <p>Developed by 
+                            <a href="https://maitsam-kadzim.vercel.app" target="_blank" rel="noopener noreferrer">
+                                <span class="inline-flex items-center rounded-md bg-kuroii/10 px-2 py-1 text-l font-bold text-kuroii inset-ring inset-ring-kuroii/30 transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md hover:bg-kuroii/20 cursor-pointer">
+                                    KuroiiDev
+                                </span>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
