@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PURTH - President University Research & Teaching Hospital</title>
+    <title>PUH - President University Research & Teaching Hospital</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Hospital, Medical Care, PresiMedic" name="keywords">
     <meta content="Best Medical Care For Yourself and Your Family" name="description">
@@ -78,13 +78,13 @@
                 <div class="flex items-center space-x-6">
                     <a href="tel:+0123456789" class="hover:text-primary transition-colors flex items-center">
                         <i class="bi bi-telephone text-white mr-2"></i>
-                        <span>+012 345 6789</span>
+                        <span>@yield('phone')</span>
                     </a>
                     <span class="text-slate-200">|</span>
-                    <a href="mailto:info@president.ac.id"
+                    <a href="mailto: @yield('email')"
                         class="hover:text-primary transition-colors flex items-center">
                         <i class="bi bi-envelope text-white mr-2"></i>
-                        <span>info@president.ac.id</span>
+                        <span>@yield('email')</span>
                     </a>
                 </div>
                 <div class="flex items-center space-x-4 text-white">
@@ -221,7 +221,7 @@
                     <h4
                         class="text-white text-lg font-semibold uppercase tracking-wider border-b-4 border-primary pb-3 mb-6 inline-block">
                         Get In Touch</h4>
-                    <p class="mb-6 text-slate-400">At PURTH, we deliver state-of-the-art care. Reach out to us for any
+                    <p class="mb-6 text-slate-400">At PUH, we deliver state-of-the-art care. Reach out to us for any
                         medical emergencies or inquiries.</p>
                     <div class="space-y-4 text-sm">
                         <div class="flex items-start">
@@ -345,7 +345,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
                     <div>
-                        <p>&copy; <a class="text-secondary hover:underline" href="{{ route('home') }}">PURTH</a>. All
+                        <p>&copy; <a class="text-secondary hover:underline" href="{{ route('home') }}">PUH</a>. All
                             Rights Reserved.</p>
                     </div>
                     <div class="md:text-right">

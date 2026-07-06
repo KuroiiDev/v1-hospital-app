@@ -1,5 +1,8 @@
 @extends('app')
 
+@section('phone', $texts['contact_phone'] ?? '')
+@section('email', $texts['contact_email'] ?? '')
+
 @section('content')
 
     @auth
@@ -22,6 +25,17 @@
                 <div class="max-w-2xl lg:max-w-3xl">
 
                     @auth
+                        <input type="text" name="texts[hero_badge]" value="{{ $texts['hero_badge'] }}"
+                            class="bg-transparent text-secondary text-5xl font-bold uppercase tracking-widest border-b-4 border-dashed border-secondary/60 pb-2 inline-block mb-6 focus:border-secondary focus:ring-0 p-0 max-w-full"
+                            style="width: {{ strlen($texts['hero_badge'] ?? '') * 0.65 }}rem;">
+                    @else
+                        <h5
+                            class="text-secondary text-5xl font-bold uppercase tracking-widest border-b-4 border-secondary pb-2 inline-block mb-6">
+                            {{ $texts['hero_badge'] }}
+                        </h5>
+                    @endauth
+
+                    @auth
                         <input type="text" name="texts[hero_title]" value="{{ $texts['hero_title'] }}"
                             class="bg-transparent text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-8 border-b-4 border-dashed border-white/20 focus:border-primary focus:ring-0 p-0 w-full">
                     @else
@@ -30,23 +44,14 @@
                             {{ $texts['hero_title'] }}
                         </h1>
                     @endauth
+                    
 
-                    @auth
-                        <input type="text" name="texts[hero_badge]" value="{{ $texts['hero_badge'] }}"
-                            class="bg-transparent text-secondary text-base md:text-lg font-bold uppercase tracking-widest border-b-4 border-dashed border-secondary/60 pb-2 inline-block mb-6 focus:border-secondary focus:ring-0 p-0 max-w-full"
-                            style="width: {{ strlen($texts['hero_badge'] ?? '') * 0.65 }}rem;">
-                    @else
-                        <h5
-                            class="text-secondary text-base md:text-lg font-bold uppercase tracking-widest border-b-4 border-secondary pb-2 inline-block mb-6">
-                            {{ $texts['hero_badge'] }}
-                        </h5>
-                    @endauth
                     @auth
                         <textarea name="texts[hero_desc]" rows="3"
                             class="w-full bg-transparent text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-xl border-2 border-dashed border-white/20 focus:border-primary focus:ring-0 p-0 resize-none">{{ $texts['hero_desc'] }}</textarea>
                     @else
                         <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-xl">
-                            {{ $texts['hero_desc'] }}
+                            {!! nl2br(e($texts['hero_desc'])) !!}
                         </p>
                     @endauth
 
@@ -109,7 +114,7 @@
                                 class="w-full bg-transparent text-slate-500 text-lg leading-relaxed mb-10 border-2 border-dashed border-slate-200 focus:border-primary focus:ring-0 p-0 resize-none">{{ $texts['about_desc'] }}</textarea>
                         @else
                             <p class="text-slate-500 text-lg leading-relaxed mb-10">
-                                {{ $texts['about_desc'] }}
+                                {!! nl2br(e($texts['about_desc'])) !!}
                             </p>
                         @endauth
 
@@ -193,7 +198,7 @@
                             {{ $texts['academic_title'] ?? '' }}
                         </h2>
                         <p class="text-slate-500 text-lg leading-relaxed mb-8">
-                            {{ $texts['academic_desc'] ?? '' }}
+                            {!! nl2br(e($texts['academic_desc'] ?? '')) !!}
                         </p>
                     @endauth
 
@@ -204,7 +209,7 @@
                                 class="w-full bg-transparent text-slate-600 italic text-lg text-center border-2 border-dashed border-primary/30 focus:border-primary focus:ring-0 p-4 resize-none rounded-xl">{{ $texts['vision_text'] ?? '' }}</textarea>
                         @else
                             <p class="text-slate-600 italic text-lg leading-relaxed text-center">
-                                "{{ $texts['vision_text'] ?? '' }}"
+                                "{!! nl2br(e($texts['vision_text'] ?? '')) !!}"
                             </p>
                         @endauth
                     </div>
@@ -253,7 +258,7 @@
                                         </div>
                                         <div>
                                             <h4 class="font-bold text-primary mb-1">{{ $card->title }}</h4>
-                                            <p class="text-slate-500 text-sm leading-relaxed">{{ $card->text }}</p>
+                                            <p class="text-slate-500 text-sm leading-relaxed">{!! nl2br(e($card->text)) !!}</p>
                                         </div>
                                     @endauth
                                 </div>
@@ -310,7 +315,7 @@
                                         </div>
                                         <div>
                                             <h4 class="font-bold text-primary mb-1">{{ $card->title }}</h4>
-                                            <p class="text-slate-500 text-sm leading-relaxed">{{ $card->text }}</p>
+                                            <p class="text-slate-500 text-sm leading-relaxed">{!! nl2br(e($card->text)) !!}</p>
                                         </div>
                                     @endauth
                                 </div>
@@ -393,7 +398,7 @@
                                     {{ $card->title }}
                                 </h3>
                                 <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
-                                    {{ $card->text }}
+                                    {!! nl2br(e($card->text)) !!}
                                 </p>
                             @endauth
                             {{-- <a href="#service"
@@ -494,7 +499,7 @@
                                         <h6 class="text-slate-600 text-xs font-semibold uppercase tracking-wider italic mb-4">
                                             {{ $doctor->title }}
                                         </h6>
-                                        <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">{{ $doctor->text }}</p>
+                                        <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">{!! nl2br(e($doctor->text)) !!}</p>
                                     @endauth
                                 </div>
                                 <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
@@ -602,7 +607,7 @@
                                             class="w-full bg-transparent text-slate-500 italic text-base text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none mb-6"
                                             placeholder="Tulis review pasien...">{{ $testimony->text }}</textarea>
                                     @else
-                                        <p class="text-slate-500 italic text-base leading-relaxed mb-6">"{{ $testimony->text }}"</p>
+                                        <p class="text-slate-500 italic text-base leading-relaxed mb-6">"{!! nl2br(e($testimony->text)) !!}"</p>
                                     @endauth
                                 </div>
                                 <div>
@@ -681,7 +686,7 @@
                                 class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0 resize-none">{{ $texts['contact_address'] ?? 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia' }}</textarea>
                         @else
                             <p class="text-slate-500 text-sm leading-relaxed">
-                                {{ $texts['contact_address'] ?? '' }}
+                                {!! nl2br(e($texts['contact_address'] ?? '')) !!}
                             </p>
                         @endauth
                     </div>
@@ -732,7 +737,7 @@
                     <div
                         class="rounded-3xl overflow-hidden shadow-md border border-slate-100 min-h-[350px] lg:min-h-full relative">
                         <iframe class="absolute inset-0 w-full h-full border-0"
-                            src="{{ $texts['contact_map_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.1818274712574!2d107.1687352!3d-6.2863773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6985aee2eec2df%3A0x6bda194fbcff3b4b!2sPresident%20University!5e0!3m2!1sen!2sid!4v1699999999999!5m2!1sen!2sid' }}"
+                            src="{{ $texts['contact_map_url'] ?? '' }}"
                             allowfullscreen="" loading="lazy" aria-hidden="false" tabindex="0"
                             title="Google Map location of PURTH">
                         </iframe>
@@ -740,7 +745,7 @@
                             <div class="absolute top-2 left-2 right-2 bg-white/90 p-2 rounded shadow flex items-center z-10">
                                 <span class="text-xs font-bold text-slate-600 mr-2 whitespace-nowrap">Map URL:</span>
                                 <input type="text" name="texts[contact_map_url]"
-                                    value="{{ $texts['contact_map_url'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.1818274712574!2d107.1687352!3d-6.2863773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6985aee2eec2df%3A0x6bda194fbcff3b4b!2sPresident%20University!5e0!3m2!1sen!2sid!4v1699999999999!5m2!1sen!2sid' }}"
+                                    value="{{ $texts['contact_map_url'] ?? '' }}"
                                     class="w-full text-[10px] p-1 border border-slate-300 rounded focus:ring-primary focus:border-primary bg-transparent">
                             </div>
                         @endauth

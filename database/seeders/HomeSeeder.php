@@ -14,19 +14,19 @@ class HomeSeeder extends Seeder
     public function run(): void
     {
         $texts = [
-            'hero_badge'       => 'PRESIDENT UNIVERSITY RESEARCH & TEACHING HOSPITAL',
-            'hero_title'       => 'PURTH',
-            'hero_desc'        => 'Advancing Healthcare Through Education, Research, and Innovation',
-            'hero_btn_1_text'  => 'About PURTH',
+            'hero_badge'       => 'PUH',
+            'hero_title'       => 'PRESIDENT UNIVERSITY HOSPITAL',
+            'hero_desc'        => '❝ For Better Health Services and Regional Competitiveness ❞',
+            'hero_btn_1_text'  => 'About PUH',
             'hero_btn_2_text'  => 'Contact Us',
             
-            'about_badge'      => 'About PURTH',
-            'about_title'      => 'Welcome to PURTH',
-            'about_desc'       => 'President University Research & Teaching Hospital (PURTH) is a general hospital that integrates high-quality healthcare services with education, research, and community engagement as the teaching hospital of the Faculty of Medicine, President University. Guided by the Academic Health System concept, PURTH brings together clinical care, medical education, clinical research, and healthcare innovation within a collaborative ecosystem. This integrated approach enables patients to receive evidence-based medical care while providing an excellent learning environment for medical students, healthcare professionals, and researchers.',
+            'about_badge'      => 'About PUH',
+            'about_title'      => 'Welcome to PUH',
+            'about_desc'       => "Welcome to President University Hospital (PUH), a modern general hospital dedicated to delivering professional, high-quality healthcare while serving as a center for medical education, research, and innovation.\nAs an integral part of President University, PUH is committed to advancing an integrated healthcare ecosystem through the Academic Health System (AHS), fostering collaboration among clinical care, medical education, research, and community engagement.\nSupported by experienced healthcare professionals, state-of-the-art facilities, and a culture that prioritizes patient safety and compassionate care, PUH is dedicated to providing safe, high-quality, and patient-centered healthcare while contributing to the advancement of medical science and the development of future healthcare professionals.",
             
             'academic_badge'   => 'Education & Research',
-            'academic_title'   => 'Advancing Healthcare Through Innovation',
-            'academic_desc'    => 'As a teaching hospital, PURTH plays a strategic role in advancing medical education, research, and healthcare innovation through: Clinical education for medical students, clinical research to support evidence-based medicine, professional training, and national/international academic collaborations.',
+            'academic_title'   => 'Advancing Healthcare Through Education & Innovation',
+            'academic_desc'    => 'President University Hospital (PUH) is a teaching hospital that integrates healthcare services, medical education, research, and innovation within a comprehensive Academic Health System. As an integral part of President University, PUH is committed to delivering high-quality, patient-centered healthcare while advancing medical education, developing future healthcare professionals, and strengthening the competitiveness of both the industrial community and the wider society through excellence in clinical care, education, and research.',
             'vision_text'      => 'To become an internationally recognized teaching hospital, distinguished for excellence in healthcare services, medical education, research, and innovation, improving the quality of life of the community while strengthening regional competitiveness.',
             
             'services_badge'   => 'Medical Services',
@@ -41,9 +41,9 @@ class HomeSeeder extends Seeder
             'contact_badge'    => 'Contact Us',
             'contact_title'    => 'Please Feel Free To Contact Us',
             'contact_address'  => 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia',
-            'contact_email'    => 'purth@president.ac.id',
+            'contact_email'    => 'purth@president.ac.id ',
             'contact_phone'    => '+62 21-8984-0530',
-            'contact_map_url'  => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.1818274712574!2d107.1687352!3d-6.2863773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6985aee2eec2df%3A0x6bda194fbcff3b4b!2sPresident%20University!5e0!3m2!1sen!2sid!4v1699999999999!5m2!1sen!2sid',
+            'contact_map_url'  => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7442281324247!2d107.1483669!3d-6.2973038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699b1e17175793%3A0x4f3c3244b22dbb10!2sPresident%20University%20Hospital!5e0!3m2!1sid!2sid!4v1783326808446!5m2!1sid!2sid',
         ];
 
         foreach ($texts as $id => $value) {
@@ -126,6 +126,16 @@ class HomeSeeder extends Seeder
                 'sort_order' => 2
             ],
             [
+                'image'      => 'profile-eric-maruapey.png',
+                'name'       => 'Dr. Erik Maruapey, MARS',
+                'title'      => 'Legal and Compliance Trustee',
+                'text'       => 'dr. Erik Maruapey, MARS, serves as the Legal and Compliance Trustee, bringing a strong background in healthcare management and legal affairs. He ensures that the hospital upholds the highest standards of governance, regulatory compliance, and ethical conduct in every aspect of its operations.',
+                'twitter'    => '#',
+                'fb'         => '#',
+                'linkedin'   => '#',
+                'sort_order' => 3
+            ],
+            [
                 'image'      => 'profile-theodora-elyas.png',
                 'name'       => 'Theodora Elyas, Apt., S.Farm.',
                 'title'      => 'Hospital Director',
@@ -133,7 +143,7 @@ class HomeSeeder extends Seeder
                 'twitter'    => '#',
                 'fb'         => '#',
                 'linkedin'   => '#',
-                'sort_order' => 3
+                'sort_order' => 4
             ],
             [
                 'image'      => 'profile-agus-baharudin.png',
@@ -143,7 +153,7 @@ class HomeSeeder extends Seeder
                 'twitter'    => '#',
                 'fb'         => '#',
                 'linkedin'   => '#',
-                'sort_order' => 4
+                'sort_order' => 5
             ],
         ];
 
