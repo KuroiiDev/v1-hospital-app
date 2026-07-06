@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use App\Models\HomeText;
 use App\Models\HomeCard;
 use App\Models\HomeDoctor;
-use App\Models\HomeTestimony;
 use Illuminate\Support\Facades\DB;
 
 class HomeSeeder extends Seeder
@@ -81,15 +80,15 @@ class HomeSeeder extends Seeder
         }
 
         $coreValuesCards = [
-            ['icon' => 'fas fa-star', 'title' => 'P – Professionalism', 'text' => 'Delivering healthcare services in accordance with the highest professional standards and ethical principles.', 'sort_order' => 1],
-            ['icon' => 'fas fa-star', 'title' => 'R – Respect', 'text' => 'Treating every patient, family member, and healthcare professional with dignity, respect, and compassion.', 'sort_order' => 2],
-            ['icon' => 'fas fa-star', 'title' => 'E – Excellence', 'text' => 'Striving for excellence through continuous quality improvement, innovation, and outstanding performance.', 'sort_order' => 3],
-            ['icon' => 'fas fa-star', 'title' => 'S – Service', 'text' => 'Providing compassionate, responsive, and patient-centered care with sincerity and dedication.', 'sort_order' => 4],
-            ['icon' => 'fas fa-star', 'title' => 'I – Integrity', 'text' => 'Upholding honesty, accountability, transparency, and ethical conduct in every aspect of our work.', 'sort_order' => 5],
-            ['icon' => 'fas fa-star', 'title' => 'D – Development', 'text' => 'Fostering continuous growth through education, research, innovation, and lifelong learning.', 'sort_order' => 6],
-            ['icon' => 'fas fa-star', 'title' => 'E – Empathy', 'text' => 'Understanding and responding to the needs of patients and their families with compassion and kindness.', 'sort_order' => 7],
-            ['icon' => 'fas fa-star', 'title' => 'N – Networking', 'text' => 'Building strong partnerships and collaborations with national and international institutions to advance healthcare, education, and research.', 'sort_order' => 8],
-            ['icon' => 'fas fa-star', 'title' => 'T – Trust', 'text' => 'Earning and maintaining the trust of our patients, partners, and communities through excellence, reliability, and integrity.', 'sort_order' => 9],
+            ['icon' => 'fas fa-star', 'title' => 'P - Professionalism', 'text' => 'Delivering healthcare services in accordance with the highest professional standards and ethical principles.', 'sort_order' => 1],
+            ['icon' => 'fas fa-star', 'title' => 'R - Respect', 'text' => 'Treating every patient, family member, and healthcare professional with dignity, respect, and compassion.', 'sort_order' => 2],
+            ['icon' => 'fas fa-star', 'title' => 'E - Excellence', 'text' => 'Striving for excellence through continuous quality improvement, innovation, and outstanding performance.', 'sort_order' => 3],
+            ['icon' => 'fas fa-star', 'title' => 'S - Service', 'text' => 'Providing compassionate, responsive, and patient-centered care with sincerity and dedication.', 'sort_order' => 4],
+            ['icon' => 'fas fa-star', 'title' => 'I - Integrity', 'text' => 'Upholding honesty, accountability, transparency, and ethical conduct in every aspect of our work.', 'sort_order' => 5],
+            ['icon' => 'fas fa-star', 'title' => 'D - Development', 'text' => 'Fostering continuous growth through education, research, innovation, and lifelong learning.', 'sort_order' => 6],
+            ['icon' => 'fas fa-star', 'title' => 'E - Empathy', 'text' => 'Understanding and responding to the needs of patients and their families with compassion and kindness.', 'sort_order' => 7],
+            ['icon' => 'fas fa-star', 'title' => 'N - Networking', 'text' => 'Building strong partnerships and collaborations with national and international institutions to advance healthcare, education, and research.', 'sort_order' => 8],
+            ['icon' => 'fas fa-star', 'title' => 'T - Trust', 'text' => 'Earning and maintaining the trust of our patients, partners, and communities through excellence, reliability, and integrity.', 'sort_order' => 9],
         ];
 
         foreach ($coreValuesCards as $card) {
@@ -107,7 +106,7 @@ class HomeSeeder extends Seeder
 
         $doctors = [
             [
-                'image'      => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+                'image'      => 'profile-johanes-poso.png',
                 'name'       => 'Johanes Poso',
                 'title'      => 'President Director',
                 'text'       => 'Johanes Poso is the Founder and President Director of PT Rumah Prima Sehat. With decades of experience in healthcare development, he has successfully built and expanded healthcare facilities from a community pharmacy into a modern hospital network. His leadership is driven by a commitment to delivering accessible, high-quality, and patient-centered healthcare services.',
@@ -117,7 +116,7 @@ class HomeSeeder extends Seeder
                 'sort_order' => 1
             ],
             [
-                'image'      => 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80',
+                'image'      => 'profile-setiawan-mardjuki.png',
                 'name'       => 'Setiawan Mardjuki',
                 'title'      => 'Director',
                 'text'       => 'Setiawan Mardjuki is an experienced executive with extensive expertise in industrial estate development, real estate, investment, and corporate management. He holds a Master of Computer Science and a Master of Finance from California State University, USA. At PT Rumah Prima Sehat, he provides strategic leadership to support sustainable growth and the delivery of high-quality healthcare services.',
@@ -127,7 +126,7 @@ class HomeSeeder extends Seeder
                 'sort_order' => 2
             ],
             [
-                'image'      => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                'image'      => 'profile-theodora-elyas.png',
                 'name'       => 'Theodora Elyas, Apt., S.Farm.',
                 'title'      => 'Hospital Director',
                 'text'       => 'Theodora Elyas is a licensed pharmacist with extensive experience in hospital support services and healthcare operations. She is committed to strengthening clinical support, operational excellence, and quality standards to ensure safe, efficient, and patient-centered healthcare services.',
@@ -137,7 +136,7 @@ class HomeSeeder extends Seeder
                 'sort_order' => 3
             ],
             [
-                'image'      => 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+                'image'      => 'profile-agus-baharudin.png',
                 'name'       => 'Agus Baharudin Soleh, S.Pd., M.M.',
                 'title'      => 'Vice Director of General Affair',
                 'text'       => 'Agus Baharudin Soleh is a healthcare and hospitality management professional with over 15 years of leadership experience in operations, project management, and organizational development. He holds a Master of Management from President University and a Bachelor of Education from Mathla\'ul Anwar University. As Hospital Vice Director, he is committed to driving operational excellence, innovation, and patient-centered healthcare services.',

@@ -368,7 +368,7 @@
                                     {{ $card->text }}
                                 </p>
                             @endauth
-                            <a href="{{ route('service') }}"
+                            <a href="#service"
                                 class="w-12 h-12 bg-slate-100 group-hover:bg-primary text-secondary rounded-full flex items-center justify-center transition-all group-hover:translate-y-1">
                                 <i class="bi bi-arrow-right text-lg"></i>
                             </a>
@@ -428,7 +428,8 @@
                                 </button>
                             @endauth
                             <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden relative">
-                                <img class="w-full h-full object-cover" src="{{ $doctor->image }}" alt="{{ $doctor->name }}">
+                                <img class="w-full h-full object-cover" src="{{ asset('images/profile/' . $doctor->image) }}"
+                                    alt="{{ $doctor->name }}">
                                 @auth
                                     <input type="text" name="doctors[{{ $doctor->id }}][image]" value="{{ $doctor->image }}"
                                         class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] p-1 focus:ring-0 border-none text-center"
@@ -807,17 +808,17 @@
                 const btnAdd = document.getElementById('btn-add-about');
                 const newId = generateUniqueId();
                 const cardHtml = `
-                                                                    <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6 relative group card-item">
-                                                                        <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-2 right-2 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus Card">
-                                                                            <i class="fas fa-trash-alt text-xs"></i>
-                                                                        </button>
-                                                                        <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                                                                            <input type="text" name="new_cards[${newId}][icon]" value="fas fa-heartbeat" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b border-dashed border-primary/40 w-full" placeholder="Icon Class">
-                                                                        </div>
-                                                                        <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent font-bold text-secondary text-sm sm:text-base text-center focus:ring-0 p-0 border-b border-dashed border-primary/20 w-full" placeholder="Judul Card" required>
-                                                                        <input type="hidden" name="new_cards[${newId}][section]" value="about">
-                                                                    </div>
-                                                                `;
+                                                                                    <div class="bg-slate-50 hover:bg-white hover:shadow-md border border-slate-100 transition-all duration-300 text-center rounded-2xl p-6 relative group card-item">
+                                                                                        <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-2 right-2 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus Card">
+                                                                                            <i class="fas fa-trash-alt text-xs"></i>
+                                                                                        </button>
+                                                                                        <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
+                                                                                            <input type="text" name="new_cards[${newId}][icon]" value="fas fa-heartbeat" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b border-dashed border-primary/40 w-full" placeholder="Icon Class">
+                                                                                        </div>
+                                                                                        <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent font-bold text-secondary text-sm sm:text-base text-center focus:ring-0 p-0 border-b border-dashed border-primary/20 w-full" placeholder="Judul Card" required>
+                                                                                        <input type="hidden" name="new_cards[${newId}][section]" value="about">
+                                                                                    </div>
+                                                                                `;
                 btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
             }
 
@@ -825,21 +826,21 @@
                 const btnAdd = document.getElementById('btn-add-service');
                 const newId = generateUniqueId();
                 const cardHtml = `
-                                                                    <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center relative card-item">
-                                                                        <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-4 right-4 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-7 h-7 rounded-full flex items-center justify-center shadow z-10" title="Hapus Card">
-                                                                            <i class="fas fa-trash-alt text-xs"></i>
-                                                                        </button>
-                                                                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6">
-                                                                            <input type="text" name="new_cards[${newId}][icon]" value="bi bi-activity" class="bg-transparent text-white text-center text-xs focus:ring-0 p-0 border-b border-dashed border-white/40 w-full" placeholder="Icon Class">
-                                                                        </div>
-                                                                        <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent text-xl font-bold text-secondary mb-4 text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Layanan Baru" required>
-                                                                        <textarea name="new_cards[${newId}][text]" rows="3" class="w-full bg-transparent text-slate-500 mb-6 text-sm text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none" placeholder="Deskripsi Layanan..." required></textarea>
-                                                                        <input type="hidden" name="new_cards[${newId}][section]" value="service">
-                                                                        <div class="w-12 h-12 bg-slate-100 text-secondary rounded-full flex items-center justify-center">
-                                                                            <i class="bi bi-arrow-right text-lg"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                `;
+                                                                                    <div class="group bg-white hover:bg-secondary rounded-2xl p-8 shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 text-center flex flex-col items-center relative card-item">
+                                                                                        <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-4 right-4 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-7 h-7 rounded-full flex items-center justify-center shadow z-10" title="Hapus Card">
+                                                                                            <i class="fas fa-trash-alt text-xs"></i>
+                                                                                        </button>
+                                                                                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 mb-6">
+                                                                                            <input type="text" name="new_cards[${newId}][icon]" value="bi bi-activity" class="bg-transparent text-white text-center text-xs focus:ring-0 p-0 border-b border-dashed border-white/40 w-full" placeholder="Icon Class">
+                                                                                        </div>
+                                                                                        <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent text-xl font-bold text-secondary mb-4 text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Layanan Baru" required>
+                                                                                        <textarea name="new_cards[${newId}][text]" rows="3" class="w-full bg-transparent text-slate-500 mb-6 text-sm text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none" placeholder="Deskripsi Layanan..." required></textarea>
+                                                                                        <input type="hidden" name="new_cards[${newId}][section]" value="service">
+                                                                                        <div class="w-12 h-12 bg-slate-100 text-secondary rounded-full flex items-center justify-center">
+                                                                                            <i class="bi bi-arrow-right text-lg"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                `;
                 btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
             }
 
@@ -847,28 +848,28 @@
                 const btnAdd = document.getElementById('btn-add-doctor');
                 const newId = generateUniqueId();
                 const cardHtml = `
-                                                                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64 relative group card-item">
-                                                                        <button type="button" onclick="removeDoctorCard(this, '${newId}')" class="absolute top-2 right-2 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Dokter">
-                                                                            <i class="fas fa-trash-alt text-xs"></i>
-                                                                        </button>
-                                                                        <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden relative">
-                                                                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" alt="New Doctor">
-                                                                            <input type="text" name="new_doctors[${newId}][image]" value="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] p-1 focus:ring-0 border-none text-center" placeholder="URL Gambar">
-                                                                        </div>
-                                                                        <div class="w-full sm:w-3/5 p-6 flex flex-col justify-between">
-                                                                            <div>
-                                                                                <input type="text" name="new_doctors[${newId}][name]" value="" class="bg-transparent text-xl font-bold text-secondary focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Dokter" required>
-                                                                                <input type="text" name="new_doctors[${newId}][title]" value="" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider italic focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-3" placeholder="Spesialisasi" required>
-                                                                                <textarea name="new_doctors[${newId}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border border-dashed border-slate-200 focus:ring-0 p-0 resize-none leading-relaxed" placeholder="Biografi Dokter..." required></textarea>
-                                                                            </div>
-                                                                            <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
-                                                                                <input type="text" name="new_doctors[${newId}][twitter]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Twitter">
-                                                                                <input type="text" name="new_doctors[${newId}][fb]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Facebook">
-                                                                                <input type="text" name="new_doctors[${newId}][linkedin]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="LinkedIn">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                `;
+                                                                                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64 relative group card-item">
+                                                                                        <button type="button" onclick="removeDoctorCard(this, '${newId}')" class="absolute top-2 right-2 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Dokter">
+                                                                                            <i class="fas fa-trash-alt text-xs"></i>
+                                                                                        </button>
+                                                                                        <div class="w-full sm:w-2/5 h-48 sm:h-full overflow-hidden relative">
+                                                                                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" alt="New Doctor">
+                                                                                            <input type="text" name="new_doctors[${newId}][image]" value="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] p-1 focus:ring-0 border-none text-center" placeholder="URL Gambar">
+                                                                                        </div>
+                                                                                        <div class="w-full sm:w-3/5 p-6 flex flex-col justify-between">
+                                                                                            <div>
+                                                                                                <input type="text" name="new_doctors[${newId}][name]" value="" class="bg-transparent text-xl font-bold text-secondary focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Dokter" required>
+                                                                                                <input type="text" name="new_doctors[${newId}][title]" value="" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider italic focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-3" placeholder="Spesialisasi" required>
+                                                                                                <textarea name="new_doctors[${newId}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border border-dashed border-slate-200 focus:ring-0 p-0 resize-none leading-relaxed" placeholder="Biografi Dokter..." required></textarea>
+                                                                                            </div>
+                                                                                            <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
+                                                                                                <input type="text" name="new_doctors[${newId}][twitter]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Twitter">
+                                                                                                <input type="text" name="new_doctors[${newId}][fb]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="Facebook">
+                                                                                                <input type="text" name="new_doctors[${newId}][linkedin]" value="#" class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0" placeholder="LinkedIn">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                `;
                 btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
             }
 
@@ -876,20 +877,20 @@
                 const btnAdd = document.getElementById('btn-add-mission');
                 const newId = generateUniqueId();
                 const cardHtml = `
-                                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 flex items-start gap-4 relative group card-item">
-                                            <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-2 right-2 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus">
-                                                <i class="fas fa-trash-alt text-xs"></i>
-                                            </button>
-                                            <div class="flex-shrink-0 mt-1">
-                                                <input type="text" name="new_cards[${newId}][icon]" value="fas fa-check-circle" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b w-12" placeholder="Icon">
-                                            </div>
-                                            <div class="flex-grow">
-                                                <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent font-bold text-secondary text-sm focus:ring-0 p-0 border-b border-dashed w-full mb-1" placeholder="Judul Misi" required>
-                                                <textarea name="new_cards[${newId}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border-dashed border-b focus:ring-0 p-0 resize-none" placeholder="Deskripsi..." required></textarea>
-                                                <input type="hidden" name="new_cards[${newId}][section]" value="mission">
-                                            </div>
-                                        </div>
-                                    `;
+                                                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 flex items-start gap-4 relative group card-item">
+                                                            <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-2 right-2 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus">
+                                                                <i class="fas fa-trash-alt text-xs"></i>
+                                                            </button>
+                                                            <div class="flex-shrink-0 mt-1">
+                                                                <input type="text" name="new_cards[${newId}][icon]" value="fas fa-check-circle" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b w-12" placeholder="Icon">
+                                                            </div>
+                                                            <div class="flex-grow">
+                                                                <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent font-bold text-secondary text-sm focus:ring-0 p-0 border-b border-dashed w-full mb-1" placeholder="Judul Misi" required>
+                                                                <textarea name="new_cards[${newId}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border-dashed border-b focus:ring-0 p-0 resize-none" placeholder="Deskripsi..." required></textarea>
+                                                                <input type="hidden" name="new_cards[${newId}][section]" value="mission">
+                                                            </div>
+                                                        </div>
+                                                    `;
                 btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
             }
 
@@ -897,20 +898,20 @@
                 const btnAdd = document.getElementById('btn-add-core-value');
                 const newId = generateUniqueId();
                 const cardHtml = `
-                                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 flex items-start gap-4 relative group card-item">
-                                            <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-2 right-2 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus">
-                                                <i class="fas fa-trash-alt text-xs"></i>
-                                            </button>
-                                            <div class="flex-shrink-0 mt-1">
-                                                <input type="text" name="new_cards[${newId}][icon]" value="fas fa-star" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b w-12" placeholder="Icon">
-                                            </div>
-                                            <div class="flex-grow">
-                                                <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent font-bold text-secondary text-sm focus:ring-0 p-0 border-b border-dashed w-full mb-1" placeholder="Judul Value" required>
-                                                <textarea name="new_cards[${newId}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border-dashed border-b focus:ring-0 p-0 resize-none" placeholder="Deskripsi..." required></textarea>
-                                                <input type="hidden" name="new_cards[${newId}][section]" value="core_values">
-                                            </div>
-                                        </div>
-                                    `;
+                                                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 flex items-start gap-4 relative group card-item">
+                                                            <button type="button" onclick="removeCard(this, '${newId}')" class="absolute top-2 right-2 transition-opacity bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow" title="Hapus">
+                                                                <i class="fas fa-trash-alt text-xs"></i>
+                                                            </button>
+                                                            <div class="flex-shrink-0 mt-1">
+                                                                <input type="text" name="new_cards[${newId}][icon]" value="fas fa-star" class="bg-transparent text-primary text-center text-xs focus:ring-0 p-0 border-b w-12" placeholder="Icon">
+                                                            </div>
+                                                            <div class="flex-grow">
+                                                                <input type="text" name="new_cards[${newId}][title]" value="" class="bg-transparent font-bold text-secondary text-sm focus:ring-0 p-0 border-b border-dashed w-full mb-1" placeholder="Judul Value" required>
+                                                                <textarea name="new_cards[${newId}][text]" rows="2" class="w-full bg-transparent text-slate-500 text-sm border-dashed border-b focus:ring-0 p-0 resize-none" placeholder="Deskripsi..." required></textarea>
+                                                                <input type="hidden" name="new_cards[${newId}][section]" value="core_values">
+                                                            </div>
+                                                        </div>
+                                                    `;
                 btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
             }
 
@@ -918,27 +919,27 @@
                 const btnAdd = document.getElementById('btn-add-testimony');
                 const newId = generateUniqueId();
                 const cardHtml = `
-                                                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 text-center flex flex-col justify-between relative group card-item">
-                                                                        <button type="button" onclick="removeTestimonyCard(this, '${newId}')" class="absolute top-4 right-4 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Testimoni">
-                                                                            <i class="fas fa-trash-alt text-xs"></i>
-                                                                        </button>
-                                                                        <div>
-                                                                            <div class="relative inline-block mb-6">
-                                                                                <img class="w-20 h-20 rounded-full mx-auto ring-4 ring-primary/20" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" alt="Patient Avatar">
-                                                                                <input type="text" name="new_testimonials[${newId}][image]" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[9px] p-0.5 focus:ring-0 border-none text-center rounded" placeholder="Img URL">
-                                                                                <div class="absolute -bottom-2 right-1/2 translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
-                                                                                    <i class="fa fa-quote-left text-primary text-xs"></i>
-                                                                                </div>
-                                                                            </div>
-                                                                            <textarea name="new_testimonials[${newId}][text]" rows="4" class="w-full bg-transparent text-slate-500 italic text-base text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none mb-6" placeholder="Tulis review testimoni..." required></textarea>
-                                                                        </div>
-                                                                        <div>
-                                                                            <hr class="w-12 mx-auto border-slate-200 mb-4">
-                                                                            <input type="text" name="new_testimonials[${newId}][name]" value="" class="bg-transparent text-lg font-bold text-secondary text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Pasien" required>
-                                                                            <input type="text" name="new_testimonials[${newId}][title]" value="" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Pekerjaan / Jabatan" required>
-                                                                        </div>
-                                                                    </div>
-                                                                `;
+                                                                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 text-center flex flex-col justify-between relative group card-item">
+                                                                                        <button type="button" onclick="removeTestimonyCard(this, '${newId}')" class="absolute top-4 right-4 opacity-100 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white w-6 h-6 rounded-full flex items-center justify-center shadow z-20" title="Hapus Testimoni">
+                                                                                            <i class="fas fa-trash-alt text-xs"></i>
+                                                                                        </button>
+                                                                                        <div>
+                                                                                            <div class="relative inline-block mb-6">
+                                                                                                <img class="w-20 h-20 rounded-full mx-auto ring-4 ring-primary/20" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" alt="Patient Avatar">
+                                                                                                <input type="text" name="new_testimonials[${newId}][image]" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[9px] p-0.5 focus:ring-0 border-none text-center rounded" placeholder="Img URL">
+                                                                                                <div class="absolute -bottom-2 right-1/2 translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
+                                                                                                    <i class="fa fa-quote-left text-primary text-xs"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <textarea name="new_testimonials[${newId}][text]" rows="4" class="w-full bg-transparent text-slate-500 italic text-base text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none mb-6" placeholder="Tulis review testimoni..." required></textarea>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <hr class="w-12 mx-auto border-slate-200 mb-4">
+                                                                                            <input type="text" name="new_testimonials[${newId}][name]" value="" class="bg-transparent text-lg font-bold text-secondary text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1" placeholder="Nama Pasien" required>
+                                                                                            <input type="text" name="new_testimonials[${newId}][title]" value="" class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full" placeholder="Pekerjaan / Jabatan" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                `;
                 btnAdd.insertAdjacentHTML('beforebegin', cardHtml);
             }
         </script>
