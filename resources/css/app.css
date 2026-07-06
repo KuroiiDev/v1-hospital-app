@@ -7,8 +7,10 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
         
-    --color-primary: #13c5dd;
-    --color-primary-hover: #10a8bc;
-    --color-secondary: #1d2a4d;
-    --color-secondary-hover: #151e37;
+    --color-primary: #203e77;
+    --color-primary-hover: #162b53;
+
+    --color-secondary: #e5232a;
+    --color-secondary-hover: #b8141a;
+
 }
