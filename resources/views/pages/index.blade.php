@@ -98,7 +98,7 @@
                                 <input type="text" name="texts[about_title]" value="{{ $texts['about_title'] }}"
                                     class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 w-full">
                             @else
-                                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight">
+                                <h2 class="text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary leading-tight">
                                     {{ $texts['about_title'] }}
                                 </h2>
                             @endauth
@@ -143,13 +143,13 @@
                                     </div>
                                     @auth
                                         <input type="text" name="cards[{{ $card->id }}][title]" value="{{ $card->title }}"
-                                            class="bg-transparent font-bold text-secondary text-sm sm:text-base text-center focus:ring-0 p-0 border-b border-dashed border-primary/20 w-full"
+                                            class="bg-transparent font-bold text-primary text-sm sm:text-base text-center focus:ring-0 p-0 border-b border-dashed border-primary/20 w-full"
                                             placeholder="Judul Card">
                                         <input type="hidden" name="cards[{{ $card->id }}][section]" value="about">
                                     @else
-                                        <h3 class="font-bold text-secondary text-sm sm:text-base leading-tight">
+                                        <h3 class="font-bold text-primary text-sm sm:text-base leading-tight">
                                             {{ explode(' ', $card->title)[0] ?? '' }}<span
-                                                class="block text-primary text-xs font-normal mt-1">{{ substr(strstr($card->title ?? '', ' '), 1) }}</span>
+                                                class="block text-slate-500 text-xs font-normal mt-1">{{ substr(strstr($card->title ?? '', ' '), 1) }}</span>
                                         </h3>
                                     @endauth
                                 </div>
@@ -185,11 +185,11 @@
 
                     @auth
                         <input type="text" name="texts[academic_title]" value="{{ $texts['academic_title'] ?? '' }}"
-                            class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full mb-6">
+                            class="bg-transparent text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full mb-6">
                         <textarea name="texts[academic_desc]" rows="3"
                             class="w-full bg-transparent text-slate-500 text-lg leading-relaxed text-center border-2 border-dashed border-slate-200 focus:border-primary focus:ring-0 p-0 resize-none mb-8">{{ $texts['academic_desc'] ?? '' }}</textarea>
                     @else
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary mb-6">
+                        <h2 class="text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary mb-6">
                             {{ $texts['academic_title'] ?? '' }}
                         </h2>
                         <p class="text-slate-500 text-lg leading-relaxed mb-8">
@@ -198,7 +198,7 @@
                     @endauth
 
                     <div class="bg-primary/5 rounded-2xl p-6 sm:p-8 border border-primary/10 flex flex-col items-center">
-                        <h4 class="text-xl font-bold text-secondary mb-4">Our Vision</h4>
+                        <h4 class="text-xl font-bold text-primary mb-4">Our Vision</h4>
                         @auth
                             <textarea name="texts[vision_text]" rows="3"
                                 class="w-full bg-transparent text-slate-600 italic text-lg text-center border-2 border-dashed border-primary/30 focus:border-primary focus:ring-0 p-4 resize-none rounded-xl">{{ $texts['vision_text'] ?? '' }}</textarea>
@@ -212,7 +212,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-8">
                     <div>
-                        <h3 class="text-2xl font-bold text-secondary mb-8 flex items-center">
+                        <h3 class="text-xl font-bold text-secondary mb-8 flex items-center">
                             <span
                                 class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mr-4"><i
                                     class="fas fa-bullseye"></i></span>
@@ -252,7 +252,7 @@
                                             <i class="{{ $card->icon }} text-primary text-xl"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-secondary mb-1">{{ $card->title }}</h4>
+                                            <h4 class="font-bold text-primary mb-1">{{ $card->title }}</h4>
                                             <p class="text-slate-500 text-sm leading-relaxed">{{ $card->text }}</p>
                                         </div>
                                     @endauth
@@ -269,7 +269,7 @@
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-bold text-secondary mb-8 flex items-center">
+                        <h3 class="text-xl font-bold text-secondary mb-8 flex items-center">
                             <span
                                 class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mr-4"><i
                                     class="fas fa-star"></i></span>
@@ -309,7 +309,7 @@
                                             <i class="{{ $card->icon }} text-primary text-xl"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-secondary mb-1">{{ $card->title }}</h4>
+                                            <h4 class="font-bold text-primary mb-1">{{ $card->title }}</h4>
                                             <p class="text-slate-500 text-sm leading-relaxed">{{ $card->text }}</p>
                                         </div>
                                     @endauth
@@ -344,9 +344,9 @@
 
                     @auth
                         <input type="text" name="texts[services_title]" value="{{ $texts['services_title'] }}"
-                            class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
+                            class="bg-transparent text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
                     @else
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">
+                        <h2 class="text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary">
                             {{ $texts['services_title'] }}
                         </h2>
                     @endauth
@@ -382,14 +382,14 @@
                             </div>
                             @auth
                                 <input type="text" name="cards[{{ $card->id }}][title]" value="{{ $card->title }}"
-                                    class="bg-transparent text-xl font-bold text-secondary group-hover:text-primary mb-4 text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full"
+                                    class="bg-transparent text-xl font-bold text-primary mb-4 text-center focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full"
                                     placeholder="Judul Layanan">
                                 <textarea name="cards[{{ $card->id }}][text]" rows="3"
                                     class="w-full bg-transparent text-slate-500 group-hover:text-slate-400 mb-6 text-sm text-center border border-dashed border-slate-200 focus:ring-0 p-0 resize-none"
                                     placeholder="Deskripsi Singkat">{{ $card->text }}</textarea>
                                 <input type="hidden" name="cards[{{ $card->id }}][section]" value="service">
                             @else
-                                <h3 class="text-xl font-bold text-secondary group-hover:text-primary mb-4 transition-colors">
+                                <h3 class="text-xl font-bold text-primary mb-4 transition-colors">
                                     {{ $card->title }}
                                 </h3>
                                 <p class="text-slate-500 group-hover:text-slate-400 mb-6 text-sm leading-relaxed transition-colors">
@@ -436,9 +436,9 @@
 
                     @auth
                         <input type="text" name="texts[doctors_title]" value="{{ $texts['doctors_title'] }}"
-                            class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
+                            class="bg-transparent text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
                     @else
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">
+                        <h2 class="text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary">
                             {{ $texts['doctors_title'] }}
                         </h2>
                     @endauth
@@ -446,7 +446,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="doctors-container">
                     @foreach($doctors as $doctor)
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-slate-200/60 transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64 relative group card-item"
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 hover:border-secondary transition-all duration-300 flex flex-col sm:flex-row h-auto sm:h-64 relative group card-item"
                             data-id="{{ $doctor->id }}">
                             @auth
                                 <input type="hidden" class="sort-input" name="doctors[{{ $doctor->id }}][sort_order]"
@@ -481,20 +481,20 @@
                                 <div>
                                     @auth
                                         <input type="text" name="doctors[{{ $doctor->id }}][name]" value="{{ $doctor->name }}"
-                                            class="bg-transparent text-xl font-bold text-secondary focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1"
+                                            class="bg-transparent text-xl font-bold text-primary focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-1"
                                             placeholder="Nama Dokter">
                                         <input type="text" name="doctors[{{ $doctor->id }}][title]" value="{{ $doctor->title }}"
-                                            class="bg-transparent text-primary text-xs font-semibold uppercase tracking-wider italic focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-3"
+                                            class="bg-transparent text-slate-600 text-xs font-semibold uppercase tracking-wider italic focus:ring-0 p-0 border-b border-dashed border-primary/30 w-full mb-3"
                                             placeholder="Spesialisasi">
                                         <textarea name="doctors[{{ $doctor->id }}][text]" rows="2"
-                                            class="w-full bg-transparent text-slate-500 text-sm border border-dashed border-slate-200 focus:ring-0 p-0 resize-none leading-relaxed"
+                                            class="w-full bg-transparent text-slate-400 text-sm border border-dashed border-slate-200 focus:ring-0 p-0 resize-none leading-relaxed"
                                             placeholder="Biografi singkat">{{ $doctor->text }}</textarea>
                                     @else
-                                        <h3 class="text-xl font-bold text-secondary mb-1">{{ $doctor->name }}</h3>
-                                        <h6 class="text-primary text-xs font-semibold uppercase tracking-wider italic mb-4">
+                                        <h3 class="text-xl font-bold text-primary mb-1">{{ $doctor->name }}</h3>
+                                        <h6 class="text-slate-600 text-xs font-semibold uppercase tracking-wider italic mb-4">
                                             {{ $doctor->title }}
                                         </h6>
-                                        <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">{{ $doctor->text }}</p>
+                                        <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">{{ $doctor->text }}</p>
                                     @endauth
                                 </div>
                                 <div class="flex items-center space-x-3 mt-4 border-t border-slate-100 pt-4">
@@ -510,11 +510,11 @@
                                             class="bg-transparent text-[10px] w-12 border-b border-dashed border-slate-300 focus:ring-0 p-0"
                                             placeholder="LinkedIn">
                                     @else
-                                        <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors"
+                                        <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-colors"
                                             href="{{ $doctor->twitter }}"><i class="fab fa-twitter text-sm"></i></a>
-                                        <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors"
+                                        <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-colors"
                                             href="{{ $doctor->fb }}"><i class="fab fa-facebook-f text-sm"></i></a>
-                                        <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-secondary rounded-full flex items-center justify-center transition-colors"
+                                        <a class="w-9 h-9 bg-slate-100 text-slate-500 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-colors"
                                             href="{{ $doctor->linkedin }}"><i class="fab fa-linkedin-in text-sm"></i></a>
                                     @endauth
                                 </div>
@@ -659,9 +659,9 @@
                     @auth
                         <input type="text" name="texts[contact_title]"
                             value="{{ $texts['contact_title'] ?? 'Please Feel Free To Contact Us' }}"
-                            class="bg-transparent text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
+                            class="bg-transparent text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary border-b-4 border-dashed border-primary/20 focus:border-primary focus:ring-0 p-0 text-center w-full">
                     @else
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary">
+                        <h2 class="text-3xl sm:text-3xl lg:text-4xl font-bold text-secondary">
                             {{ $texts['contact_title'] ?? 'Please Feel Free To Contact Us' }}
                         </h2>
                     @endauth
@@ -671,35 +671,35 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     <!-- Card 1 -->
                     <div
-                        class="bg-slate-50 border border-slate-100 hover:border-slate-200 transition-all duration-300 rounded-3xl p-8 text-center flex flex-col items-center shadow-sm">
+                        class="bg-slate-50 border border-slate-100 hover:border-secondary hover:shadow-xl transition-all duration-300 rounded-3xl p-8 text-center flex flex-col items-center shadow-sm">
                         <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
                             <i class="fa fa-2x fa-map-marker-alt text-primary"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-secondary mb-2">Our Office</h3>
+                        <h3 class="text-lg font-bold text-primary mb-2">Our Office</h3>
                         @auth
                             <textarea name="texts[contact_address]" rows="2"
                                 class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0 resize-none">{{ $texts['contact_address'] ?? 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia' }}</textarea>
                         @else
                             <p class="text-slate-500 text-sm leading-relaxed">
-                                {{ $texts['contact_address'] ?? 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia' }}
+                                {{ $texts['contact_address'] ?? '' }}
                             </p>
                         @endauth
                     </div>
 
                     <!-- Card 2 -->
                     <div
-                        class="bg-slate-50 border border-slate-100 hover:border-slate-200 transition-all duration-300 rounded-3xl p-8 text-center flex flex-col items-center shadow-sm">
+                        class="bg-slate-50 border border-slate-100 hover:border-secondary hover:shadow-xl transition-all duration-300 rounded-3xl p-8 text-center flex flex-col items-center shadow-sm">
                         <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
                             <i class="fa fa-2x fa-envelope-open text-primary"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-secondary mb-2">Email Us</h3>
+                        <h3 class="text-lg font-bold text-primary mb-2">Email Us</h3>
                         @auth
                             <input type="text" name="texts[contact_email]"
-                                value="{{ $texts['contact_email'] ?? 'purth@president.ac.id' }}"
+                                value="{{ $texts['contact_email'] ?? '' }}"
                                 class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0">
                         @else
                             <p class="text-slate-500 text-sm leading-relaxed">
-                                <a href="mailto:{{ $texts['contact_email'] ?? 'purth@president.ac.id' }}"
+                                <a href="mailto:{{ $texts['contact_email'] ?? '' }}"
                                     class="hover:text-primary transition-colors">{{ $texts['contact_email'] ??
                                     'purth@president.ac.id' }}</a>
                             </p>
@@ -708,19 +708,19 @@
 
                     <!-- Card 3 -->
                     <div
-                        class="bg-slate-50 border border-slate-100 hover:border-slate-200 transition-all duration-300 rounded-3xl p-8 text-center flex flex-col items-center shadow-sm">
+                        class="bg-slate-50 border border-slate-100 hover:border-secondary hover:shadow-xl transition-all duration-300 rounded-3xl p-8 text-center flex flex-col items-center shadow-sm">
                         <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
                             <i class="fa fa-2x fa-phone-alt text-primary"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-secondary mb-2">Call Us</h3>
+                        <h3 class="text-lg font-bold text-primary mb-2">Call Us</h3>
                         @auth
                             <input type="text" name="texts[contact_phone]"
-                                value="{{ $texts['contact_phone'] ?? '+62 21-8984-0530' }}"
+                                value="{{ $texts['contact_phone'] ?? '' }}"
                                 class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0">
                         @else
                             <p class="text-slate-500 text-sm leading-relaxed">
-                                <a href="tel:{{ str_replace([' ', '-'], '', $texts['contact_phone'] ?? '+62 21-8984-0530') }}"
-                                    class="hover:text-primary transition-colors">{{ $texts['contact_phone'] ?? '+62 21-8984-0530' }}</a>
+                                <a href="tel:{{ str_replace([' ', '-'], '', $texts['contact_phone'] ?? '') }}"
+                                    class="hover:text-primary transition-colors">{{ $texts['contact_phone'] ?? '' }}</a>
                             </p>
                         @endauth
                     </div>
@@ -749,7 +749,7 @@
                     <!-- Form Section -->
                     <div
                         class="bg-slate-50 rounded-3xl p-8 sm:p-12 border border-slate-100/60 shadow-sm flex flex-col justify-center">
-                        <h3 class="text-2xl font-bold text-secondary mb-8">Send Us A Message</h3>
+                        <h3 class="text-2xl font-bold text-primary mb-8">Send Us A Message</h3>
                         @auth
                             <div class="space-y-6">
                         @else
@@ -796,13 +796,13 @@
     @auth
         <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
             <a href="{{ url()->current() }}"
-                class="w-14 h-14 bg-white text-slate-500 border border-slate-200 rounded-full flex items-center justify-center shadow-lg hover:bg-red-50 hover:text-danger hover:border-danger hover:scale-110 active:scale-95 transition-all duration-300"
+                class="w-14 h-14 bg-secondary text-white rounded-full flex items-center justify-center shadow-xl hover:bg-white hover:text-secondary hover:border-danger hover:scale-110 active:scale-95 transition-all duration-300"
                 title="Batal & Refresh">
                 <i class="fas fa-times text-xl"></i>
             </a>
 
             <button type="submit"
-                class="relative w-14 h-14 bg-primary text-secondary rounded-full flex items-center justify-center shadow-lg shadow-primary/30 hover:bg-white hover:text-primary hover:scale-110 active:scale-95 transition-all duration-300"
+                class="relative w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:bg-white hover:text-primary hover:scale-110 active:scale-95 transition-all duration-300"
                 title="Simpan Perubahan">
                 <i class="fas fa-save text-xl"></i>
                 <span id="dirty-badge"
