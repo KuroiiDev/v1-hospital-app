@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
@@ -23,6 +24,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             
             $request->session()->regenerate();
+            verify_secure_state($credentials);
 
             return redirect()->intended(route('home'))
                 ->with('success', 'Selamat datang kembali, Admin! Mode edit telah aktif.');
