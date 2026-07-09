@@ -81,8 +81,7 @@
                         <span>@yield('phone')</span>
                     </a>
                     <span class="text-slate-200">|</span>
-                    <a href="mailto: @yield('email')"
-                        class="hover:text-primary transition-colors flex items-center">
+                    <a href="mailto: @yield('email')" class="hover:text-primary transition-colors flex items-center">
                         <i class="bi bi-envelope text-white mr-2"></i>
                         <span>@yield('email')</span>
                     </a>
@@ -97,7 +96,7 @@
                     <a class="hover:text-primary transition-colors" href="#!" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a class="hover:text-primary transition-colors" href="#!" aria-label="Instagram">
+                    <a class="hover:text-primary transition-colors" href="@yield('instagram')" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <a class="hover:text-primary transition-colors" href="#!" aria-label="YouTube">
@@ -226,16 +225,17 @@
                     <div class="space-y-4 text-sm">
                         <div class="flex items-start">
                             <i class="fa fa-map-marker-alt text-primary mt-1 mr-3 w-4 text-center"></i>
-                            <span>123 Street, New York, USA</span>
+                            <span>@yield('address')</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fa fa-envelope text-primary mr-3 w-4 text-center"></i>
-                            <a href="mailto:info@example.com"
-                                class="hover:text-primary transition-colors">info@example.com</a>
+                            <a href="mailto:@yield('email')"
+                                class="hover:text-primary transition-colors">@yield('email')</a>
                         </div>
                         <div class="flex items-center">
                             <i class="fa fa-phone-alt text-primary mr-3 w-4 text-center"></i>
-                            <a href="tel:+01234567890" class="hover:text-primary transition-colors">+012 345 67890</a>
+                            <a href="tel:@yield('phone')"
+                                class="hover:text-primary transition-colors">@yield('phone')</a>
                         </div>
                     </div>
                 </div>
@@ -332,7 +332,7 @@
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400"
-                            href="#!" aria-label="Instagram">
+                            href="@yield('instagram')" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>

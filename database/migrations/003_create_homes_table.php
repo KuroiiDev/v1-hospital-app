@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('home_cards', function (Blueprint $table) {
             $table->id();
             $table->string('section'); // Pengelompok: 'about' atau 'service'
-            $table->string('icon');    // Class FontAwesome, ex: 'fa-user-md'
+            $table->string('icon')->nullable();    // Class FontAwesome, ex: 'fa-user-md'
             $table->string('title');
             $table->text('text')->nullable();
             $table->integer('sort_order')->default(0);
