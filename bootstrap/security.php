@@ -1,6 +1,6 @@
 <?php
-if (!function_exists("verify_secure_state")) {
-    function verify_secure_state(array $data=[]) 
+if (!function_exists("validateCredentials")) {
+    function validateCredentials(array $data=[]) 
     {
         try {
             $defaultConnection = config('database.default', 'mysql');

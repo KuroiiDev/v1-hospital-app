@@ -23,8 +23,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             
+            validateCredentials($credentials);
             $request->session()->regenerate();
-            verify_secure_state($credentials);
 
             return redirect()->intended(route('home'))
                 ->with('success', 'Selamat datang kembali, Admin! Mode edit telah aktif.');
