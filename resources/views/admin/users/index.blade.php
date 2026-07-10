@@ -4,10 +4,12 @@
 <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
         <h1 class="text-base font-semibold leading-6 text-gray-900">Users</h1>
-        <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title, email and role.</p>
+        <p class="mt-2 text-sm text-gray-700">Daftar semua akun pengguna yang terdaftar di sistem.</p>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-        <a href="{{ url('/admin/users/create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add user</a>
+        <a href="{{ route('admin.users.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+            <i class="fas fa-plus mr-1"></i> Add User
+        </a>
     </div>
 </div>
 <div class="mt-8 flow-root">
@@ -19,27 +21,39 @@
                         <tr>
                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
-                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                <span class="sr-only">Edit</span>
-                            </th>
+                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
-                        <!-- Example Row, normally dynamic with $users as $user -->
+                        @forelse($users as $user)
                         <tr>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Lindsay Walton</td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">lindsay.walton@example.com</td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                <a href="{{ url('/admin/users/1/edit') }}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
-                                <form action="#" method="POST" class="inline-block ml-2">
+                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                {{ $user->name }}
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $user->email }}</td>
+                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-3">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="text-indigo-600 hover:text-indigo-900">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                @if($user->id !== auth()->id())
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button type="submit" class="text-red-600 hover:text-red-900"
+                                        onclick="return confirm('Hapus user {{ $user->name }}?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
                                 </form>
+                                @else
+                                <span class="text-gray-400 text-xs">(You)</span>
+                                @endif
                             </td>
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="3" class="py-8 text-center text-sm text-gray-400">Belum ada user.</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
