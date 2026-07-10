@@ -45,32 +45,32 @@
                     <!-- Mobile Sidebar component -->
                     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-100 px-6 pb-4 ring-1 ring-white/10">
                         <div class="flex h-16 shrink-0 items-center">
-                            <span class="text-white text-xl font-bold">Admin Panel</span>
+                            <img src="{{ asset('images/navbar-logo.png') }}" alt="Logo" class="h-10 w-auto">
                         </div>
                         <nav class="flex flex-1 flex-col">
                             <ul role="list" class="flex flex-1 flex-col gap-y-7">
                                 <li>
                                     <ul role="list" class="-mx-2 space-y-1">
                                         <li>
-                                            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                                 <i class="fas fa-tachometer-alt text-lg w-6 shrink-0 text-center"></i>
                                                 Dashboard
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                                 <i class="fas fa-users text-lg w-6 shrink-0 text-center"></i>
                                                 Users
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('admin.doctors.index') }}" class="{{ request()->routeIs('admin.doctors.*') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <a href="{{ route('admin.doctors.index') }}" class="{{ request()->routeIs('admin.doctors.*') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                                 <i class="fas fa-user-md text-lg w-6 shrink-0 text-center"></i>
                                                 Leaders
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                                 <i class="fas fa-cog text-lg w-6 shrink-0 text-center"></i>
                                                 Settings (Medsos)
                                             </a>
@@ -95,25 +95,25 @@
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
                                 <li>
-                                    <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                         <i class="fas fa-tachometer-alt text-lg w-6 shrink-0 text-center"></i>
                                         Dashboard
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                         <i class="fas fa-users text-lg w-6 shrink-0 text-center"></i>
                                         Users
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.doctors.index') }}" class="{{ request()->routeIs('admin.doctors.*') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <a href="{{ route('admin.doctors.index') }}" class="{{ request()->routeIs('admin.doctors.*') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                         <i class="fas fa-user-md text-lg w-6 shrink-0 text-center"></i>
                                         Leaders
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'bg-primary-dark text-secondary' : 'text-gray-400 hover:text-white hover:bg-slate-400' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'bg-primary-dark text-white' : 'text-gray-400 hover:text-secondary hover:bg-gray-200' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                         <i class="fas fa-cog text-lg w-6 shrink-0 text-center"></i>
                                         Settings (Medsos)
                                     </a>
