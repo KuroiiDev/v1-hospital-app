@@ -8,10 +8,11 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
         
     --color-primary: #203e77;
-    --color-primary-hover: #162b53;
+    --color-primary-light: #395996;
+    --color-primary-dark: #0f1f3d;
 
     --color-secondary: #e5232a;
-    --color-secondary-hover: #b8141a;
+    --color-secondary-light: #fc6a6e;
 
     --color-kuroii: #c4b5fd;
 }

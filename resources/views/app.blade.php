@@ -139,7 +139,7 @@
                     <!-- MENU ADMIN JIKA LOGIN (DESKTOP) -->
                     @auth
                         <div class="h-6 w-px bg-slate-300 mx-2"></div> <!-- Garis pemisah -->
-                        <a href="#"
+                        <a href="{{ route('admin.dashboard') }}"
                             class="px-4 py-2 rounded-md text-base font-medium text-primary hover:text-emerald-700 transition-colors">
                             <i class="fas fa-cog mr-1"></i> Dashboard
                         </a>
