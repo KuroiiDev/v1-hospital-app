@@ -24,7 +24,7 @@ class HomeController extends Controller
         $doctors = HomeDoctor::orderBy('sort_order')->get();
         $testimonials = HomeTestimony::latest()->get();
 
-        return view('pages.index', compact('texts', 'aboutCards', 'missionCards', 'coreValuesCards', 'serviceCards', 'doctors', 'testimonials'));
+        return view('index', compact('texts', 'aboutCards', 'missionCards', 'coreValuesCards', 'serviceCards', 'doctors', 'testimonials'));
     }
 
 
