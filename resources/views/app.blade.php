@@ -76,32 +76,48 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center text-sm text-white">
                 <div class="flex items-center space-x-6">
-                    <a href="tel:+0123456789" class="hover:text-primary transition-colors flex items-center">
+                    @if(!empty($__env->yieldContent('phone')))
+                    <a href="tel:{{ str_replace([' ', '-'], '', $__env->yieldContent('phone')) }}" class="hover:text-primary transition-colors flex items-center">
                         <i class="bi bi-telephone text-white mr-2"></i>
                         <span>@yield('phone')</span>
                     </a>
+                    @endif
+                    @if(!empty($__env->yieldContent('phone')) && !empty($__env->yieldContent('email')))
                     <span class="text-slate-200">|</span>
-                    <a href="mailto: @yield('email')" class="hover:text-primary transition-colors flex items-center">
+                    @endif
+                    @if(!empty($__env->yieldContent('email')))
+                    <a href="mailto:@yield('email')" class="hover:text-primary transition-colors flex items-center">
                         <i class="bi bi-envelope text-white mr-2"></i>
                         <span>@yield('email')</span>
                     </a>
+                    @endif
                 </div>
                 <div class="flex items-center space-x-4 text-white">
-                    <a class="hover:text-primary transition-colors" href="#!" aria-label="Facebook">
+                    @if(!empty($__env->yieldContent('facebook')))
+                    <a class="hover:text-primary transition-colors" href="@yield('facebook')" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a class="hover:text-primary transition-colors" href="#!" aria-label="Twitter">
+                    @endif
+                    @if(!empty($__env->yieldContent('twitter')))
+                    <a class="hover:text-primary transition-colors" href="@yield('twitter')" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a class="hover:text-primary transition-colors" href="#!" aria-label="LinkedIn">
+                    @endif
+                    @if(!empty($__env->yieldContent('linkedin')))
+                    <a class="hover:text-primary transition-colors" href="@yield('linkedin')" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a class="hover:text-primary transition-colors" href="@yield('instagram')" aria-label="Instagram">
+                    @endif
+                    @if(!empty($__env->yieldContent('instagram')))
+                    <a class="hover:text-primary transition-colors" href="@yield('instagram')" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="hover:text-primary transition-colors" href="#!" aria-label="YouTube">
+                    @endif
+                    @if(!empty($__env->yieldContent('youtube')))
+                    <a class="hover:text-primary transition-colors" href="@yield('youtube')" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -223,20 +239,26 @@
                     <p class="mb-6 text-slate-400">At PUH, we deliver state-of-the-art care. Reach out to us for any
                         medical emergencies or inquiries.</p>
                     <div class="space-y-4 text-sm">
+                        @if(!empty($__env->yieldContent('address')))
                         <div class="flex items-start">
                             <i class="fa fa-map-marker-alt text-primary mt-1 mr-3 w-4 text-center"></i>
                             <span>@yield('address')</span>
                         </div>
+                        @endif
+                        @if(!empty($__env->yieldContent('email')))
                         <div class="flex items-center">
                             <i class="fa fa-envelope text-primary mr-3 w-4 text-center"></i>
                             <a href="mailto:@yield('email')"
                                 class="hover:text-primary transition-colors">@yield('email')</a>
                         </div>
+                        @endif
+                        @if(!empty($__env->yieldContent('phone')))
                         <div class="flex items-center">
                             <i class="fa fa-phone-alt text-primary mr-3 w-4 text-center"></i>
-                            <a href="tel:@yield('phone')"
+                            <a href="tel:{{ str_replace([' ', '-'], '', $__env->yieldContent('phone')) }}"
                                 class="hover:text-primary transition-colors">@yield('phone')</a>
                         </div>
+                        @endif
                     </div>
                 </div>
 
@@ -319,22 +341,36 @@
                     </form>
                     <h5 class="text-primary text-sm font-semibold uppercase tracking-wider mb-3">Follow Us</h5>
                     <div class="flex space-x-2">
+                        @if(!empty($__env->yieldContent('twitter')))
                         <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400"
-                            href="#!" aria-label="Twitter">
+                            href="@yield('twitter')" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
+                        @endif
+                        @if(!empty($__env->yieldContent('facebook')))
                         <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400"
-                            href="#!" aria-label="Facebook">
+                            href="@yield('facebook')" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
+                        @endif
+                        @if(!empty($__env->yieldContent('linkedin')))
                         <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400"
-                            href="#!" aria-label="LinkedIn">
+                            href="@yield('linkedin')" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
+                        @endif
+                        @if(!empty($__env->yieldContent('instagram')))
                         <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400"
-                            href="@yield('instagram')" aria-label="Instagram">
+                            href="@yield('instagram')" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
+                        @endif
+                        @if(!empty($__env->yieldContent('youtube')))
+                        <a class="w-10 h-10 bg-slate-800 hover:bg-slate-900 hover:text-secondary rounded-full flex items-center justify-center transition-all text-slate-400"
+                            href="@yield('youtube')" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>

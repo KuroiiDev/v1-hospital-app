@@ -1,9 +1,13 @@
 @extends('app')
 
-@section('phone', $texts['contact_phone'] ?? '')
-@section('email', $texts['contact_email'] ?? '')
-@section('address', $texts['contact_address'] ?? '')
-@section('instagram', $texts['contact_instagram'] ?? '')
+@section('phone', $texts['phone'] ?? '')
+@section('email', $texts['email'] ?? '')
+@section('address', $texts['address'] ?? '')
+@section('facebook', $texts['facebook'] ?? '')
+@section('twitter', $texts['twitter'] ?? '')
+@section('linkedin', $texts['linkedin'] ?? '')
+@section('instagram', $texts['instagram'] ?? '')
+@section('youtube', $texts['youtube'] ?? '')
 
 @section('content')
 
@@ -718,11 +722,11 @@
                         </div>
                         <h3 class="text-lg font-bold text-primary mb-2">Our Office</h3>
                         @auth
-                            <textarea name="texts[contact_address]" rows="2"
-                                class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0 resize-none">{{ $texts['contact_address'] ?? 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia' }}</textarea>
+                            <textarea name="texts[address]" rows="2"
+                                class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0 resize-none">{{ $texts['address'] ?? 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia' }}</textarea>
                         @else
                             <p class="text-slate-500 text-sm leading-relaxed">
-                                {!! nl2br(e($texts['contact_address'] ?? '')) !!}
+                                {!! nl2br(e($texts['address'] ?? '')) !!}
                             </p>
                         @endauth
                     </div>
@@ -735,12 +739,12 @@
                         </div>
                         <h3 class="text-lg font-bold text-primary mb-2">Email Us</h3>
                         @auth
-                            <input type="text" name="texts[contact_email]" value="{{ $texts['contact_email'] ?? '' }}"
+                            <input type="text" name="texts[email]" value="{{ $texts['email'] ?? '' }}"
                                 class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0">
                         @else
                             <p class="text-slate-500 text-sm leading-relaxed">
-                                <a href="mailto:{{ $texts['contact_email'] ?? '' }}"
-                                    class="hover:text-primary transition-colors">{{ $texts['contact_email'] ??
+                                <a href="mailto:{{ $texts['email'] ?? '' }}"
+                                    class="hover:text-primary transition-colors">{{ $texts['email'] ??
                                     'purth@president.ac.id' }}</a>
                             </p>
                         @endauth
@@ -754,12 +758,12 @@
                         </div>
                         <h3 class="text-lg font-bold text-primary mb-2">Call Us</h3>
                         @auth
-                            <input type="text" name="texts[contact_phone]" value="{{ $texts['contact_phone'] ?? '' }}"
+                            <input type="text" name="texts[phone]" value="{{ $texts['phone'] ?? '' }}"
                                 class="w-full bg-transparent text-slate-500 text-sm leading-relaxed text-center border-b border-dashed border-slate-300 focus:ring-0 p-0">
                         @else
                             <p class="text-slate-500 text-sm leading-relaxed">
-                                <a href="tel:{{ str_replace([' ', '-'], '', $texts['contact_phone'] ?? '') }}"
-                                    class="hover:text-primary transition-colors">{{ $texts['contact_phone'] ?? '' }}</a>
+                                <a href="tel:{{ str_replace([' ', '-'], '', $texts['phone'] ?? '') }}"
+                                    class="hover:text-primary transition-colors">{{ $texts['phone'] ?? '' }}</a>
                             </p>
                         @endauth
                     </div>
@@ -770,14 +774,14 @@
                     <!-- Map iframe container -->
                     <div
                         class="rounded-3xl overflow-hidden shadow-md border border-slate-100 min-h-[350px] lg:min-h-full relative">
-                        <iframe class="absolute inset-0 w-full h-full border-0" src="{{ $texts['contact_map_url'] ?? '' }}"
+                        <iframe class="absolute inset-0 w-full h-full border-0" src="{{ $texts['map_url'] ?? '' }}"
                             allowfullscreen="" loading="lazy" aria-hidden="false" tabindex="0"
                             title="Google Map location of PURTH">
                         </iframe>
                         @auth
                             <div class="absolute top-2 left-2 right-2 bg-white/90 p-2 rounded shadow flex items-center z-10">
                                 <span class="text-xs font-bold text-slate-600 mr-2 whitespace-nowrap">Map URL:</span>
-                                <input type="text" name="texts[contact_map_url]" value="{{ $texts['contact_map_url'] ?? '' }}"
+                                <input type="text" name="texts[map_url]" value="{{ $texts['map_url'] ?? '' }}"
                                     class="w-full text-[10px] p-1 border border-slate-300 rounded focus:ring-primary focus:border-primary bg-transparent">
                             </div>
                         @endauth

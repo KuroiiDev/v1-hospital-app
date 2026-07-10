@@ -39,11 +39,16 @@ class HomeSeeder extends Seeder
 
             'contact_badge' => 'Contact Us',
             'contact_title' => 'Please Feel Free To Contact Us',
-            'contact_address' => 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia',
-            'contact_email' => 'purth@president.ac.id ',
-            'contact_phone' => '+62 21-8984-0530',
-            'contact_instagram' => 'https://www.instagram.com/presuniv_hospital/',
-            'contact_map_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7442281324247!2d107.1483669!3d-6.2973038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699b1e17175793%3A0x4f3c3244b22dbb10!2sPresident%20University%20Hospital!5e0!3m2!1sid!2sid!4v1783326808446!5m2!1sid!2sid',
+
+            'address' => 'Jababeka Industrial Township, Cikarang, Bekasi, Indonesia',
+            'email' => 'purth@president.ac.id ',
+            'phone' => '+62 21-8984-0530',
+            'facebook' => '',
+            'twitter' => '',
+            'linkedin' => '',
+            'instagram' => 'https://www.instagram.com/presuniv_hospital/',
+            'youtube' => '',
+            'map_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7442281324247!2d107.1483669!3d-6.2973038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699b1e17175793%3A0x4f3c3244b22dbb10!2sPresident%20University%20Hospital!5e0!3m2!1sid!2sid!4v1783326808446!5m2!1sid!2sid',
         ];
 
         foreach ($texts as $id => $value) {

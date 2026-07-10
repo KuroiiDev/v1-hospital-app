@@ -23,28 +23,28 @@
                     <div class="sm:col-span-4">
                         <label class="block text-sm font-medium leading-6 text-gray-900">Email Kontak</label>
                         <div class="mt-2">
-                            <input type="text" name="texts[contact_email]" value="{{ old('texts.contact_email', $texts['contact_email'] ?? '') }}"
+                            <input type="text" name="texts[email]" value="{{ old('texts.email', $texts['email'] ?? '') }}"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
                         </div>
                     </div>
                     <div class="sm:col-span-4">
                         <label class="block text-sm font-medium leading-6 text-gray-900">Nomor Telepon</label>
                         <div class="mt-2">
-                            <input type="text" name="texts[contact_phone]" value="{{ old('texts.contact_phone', $texts['contact_phone'] ?? '') }}"
+                            <input type="text" name="texts[phone]" value="{{ old('texts.phone', $texts['phone'] ?? '') }}"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
                         </div>
                     </div>
                     <div class="col-span-full">
                         <label class="block text-sm font-medium leading-6 text-gray-900">Alamat</label>
                         <div class="mt-2">
-                            <textarea name="texts[contact_address]" rows="2"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">{{ old('texts.contact_address', $texts['contact_address'] ?? '') }}</textarea>
+                            <textarea name="texts[address]" rows="2"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">{{ old('texts.address', $texts['address'] ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {{-- Media Sosial --}}
+                        {{-- Media Sosial --}}
             <div>
                 <h3 class="text-base font-semibold text-gray-900 border-b pb-2 mb-4">
                     <i class="fas fa-share-alt mr-2 text-indigo-500"></i> Media Sosial
@@ -52,16 +52,57 @@
                 <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
                     <div class="sm:col-span-4">
                         <label class="block text-sm font-medium leading-6 text-gray-900">
+                            <i class="fab fa-facebook-f mr-1 text-blue-600"></i> Facebook URL
+                        </label>
+                        <div class="mt-2">
+                            <input type="url" name="texts[facebook]" value="{{ old('texts.facebook', $texts['facebook'] ?? '') }}"
+                                placeholder="https://facebook.com/..."
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">
+                            <i class="fab fa-twitter mr-1 text-blue-400"></i> Twitter URL
+                        </label>
+                        <div class="mt-2">
+                            <input type="url" name="texts[twitter]" value="{{ old('texts.twitter', $texts['twitter'] ?? '') }}"
+                                placeholder="https://twitter.com/..."
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">
+                            <i class="fab fa-linkedin mr-1 text-blue-700"></i> LinkedIn URL
+                        </label>
+                        <div class="mt-2">
+                            <input type="url" name="texts[linkedin]" value="{{ old('texts.linkedin', $texts['linkedin'] ?? '') }}"
+                                placeholder="https://linkedin.com/in/..."
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">
                             <i class="fab fa-instagram mr-1 text-pink-500"></i> Instagram URL
                         </label>
                         <div class="mt-2">
-                            <input type="url" name="texts[contact_instagram]" value="{{ old('texts.contact_instagram', $texts['contact_instagram'] ?? '') }}"
+                            <input type="url" name="texts[instagram]" value="{{ old('texts.instagram', $texts['instagram'] ?? '') }}"
                                 placeholder="https://instagram.com/..."
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">
+                            <i class="fab fa-youtube mr-1 text-red-600"></i> YouTube URL
+                        </label>
+                        <div class="mt-2">
+                            <input type="url" name="texts[youtube]" value="{{ old('texts.youtube', $texts['youtube'] ?? '') }}"
+                                placeholder="https://youtube.com/..."
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
                         </div>
                     </div>
                 </div>
             </div>
+
 
             {{-- Google Maps --}}
             <div>
@@ -73,7 +114,7 @@
                         <label class="block text-sm font-medium leading-6 text-gray-900">Map Embed URL</label>
                         <p class="text-xs text-gray-400 mb-2">Salin URL dari tombol "Embed a map" di Google Maps.</p>
                         <div class="mt-2">
-                            <input type="text" name="texts[contact_map_url]" value="{{ old('texts.contact_map_url', $texts['contact_map_url'] ?? '') }}"
+                            <input type="text" name="texts[map_url]" value="{{ old('texts.map_url', $texts['map_url'] ?? '') }}"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm px-3">
                         </div>
                     </div>
