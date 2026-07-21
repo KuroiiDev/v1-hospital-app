@@ -142,7 +142,7 @@ class HomeSeeder extends Seeder
                 'image' => 'profile-agus-baharudin.png',
                 'name' => 'Agus Baharudin Soleh, S.Pd., M.M.',
                 'title' => 'Vice Director of General Affair',
-                'text' => 'Agus Baharudin Soleh is a healthcare and hospitality management professional with over 15 years of leadership experience in operations, project management, and organizational development. He holds a Master of Management from President University and a Bachelor of Education from Mathla\'ul Anwar University. As Hospital Vice Director, he is committed to driving operational excellence, innovation, and patient-centered healthcare services.',
+                'text' => 'Agus Baharudin Soleh is a healthcare and hospitality management professional with over 15 years of leadership experience in operations, project management, and organizational development. He holds a Master of Management from President University As Hospital Vice Director, he is committed to driving operational excellence, innovation, and patient-centered healthcare services.',
                 'sort_order' => 5,
             ],
         ];
